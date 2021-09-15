@@ -1,0 +1,60 @@
+<div id="exportDiv" title="Export Contacts" style="display: none;">
+					<div class="" style="margin-top: 0.7em">
+						<p>
+							<b><i>Please select a file type to export contacts.</i></b>
+						</p>
+						<!--<hr style="height:0.1em;border:none;color:#333;background-color:#333;" />-->
+						<form action="" name="exportForm" method="post"
+							enctype="multipart/form-data"
+							style="margin-left: 1.0em; margin-top: 1.5em">
+							<table>
+								<tbody>
+									<tr>
+										<td><img src="static_resources/images/csv.png" id="csv"
+											alt="Excel"
+											title="click here to export contacts as .csv file.."
+											onclick="submitImportExportForm('2','csv')"
+											style="height: 4.2em; width: 5.2em; display: inline; margin-left: 1.0em"
+											class="btn btn-success button"></td>
+										<td><img src="static_resources/images/Excel.png" id="excel"
+											alt="Excel"
+											title="click here to export contacts as .xls file.."
+											onclick="submitImportExportForm('2','xls')"
+											style="height: 4.2em; width: 5.2em; display: inline; margin-left: 3.0em"
+											class="btn btn-success button"></td>
+										<td><img src="static_resources/images/vcard.png" id="vcf"
+											alt="Excel"
+											title="click here to export contacts as .xls file.."
+											onclick="submitImportExportForm('2','vcf')"
+											style="height: 4.2em; width: 5.2em; display: inline; margin-left: 3.0em"
+											class="btn btn-success button"></td>
+									</tr>
+									<tr style="height: 3.5em">
+										<td>
+											<p style="display: inline; width: 3.0em; margin-left: 1.5em;">
+												<i>CSV</i>
+											</p>
+										</td>
+										<td><p
+												style="display: inline; width: 3.0em; margin-left: 4.0em">
+												<i>XLS</i>
+											</p></td>
+										<td><p
+												style="display: inline; width: 3.0em; margin-left: 4.0em">
+												<i>VCF</i>
+											</p></td>
+									</tr>
+									<tr>
+										<td></td>
+										<!--<td><input type = "submit" value = "Export" class="btn btn-primary btn-xs" style="width:8.5em;margin-left:1.0em;margin-top:0.5em" /></td>-->
+										<td style="width: 12.0em"></td>
+										<td><input type="button" value="Cancel"
+											class="btn btn-default btn-xs "
+											style="width: 8.5em; margin-top: 0.5em;" id="closeExport"
+											onclick="closeExportpopup()"></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>

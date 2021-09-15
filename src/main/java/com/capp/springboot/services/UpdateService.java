@@ -1,0 +1,13 @@
+package com.capp.springboot.services;
+
+public interface UpdateService {
+
+	String updatePassword(String currentPwd, String newPwd, String tableName);
+
+	boolean updateColour(String tableName, String bgColour, String navBarBgClr, String hdrTxtClr);
+
+	String updateView(String view, String tableName);
+
+	void updateDp(byte[] fileContent, String id, String tableName);
+
+}

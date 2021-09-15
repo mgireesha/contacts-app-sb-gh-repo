@@ -1,0 +1,99 @@
+<script type="text/javascript" src="static_resources/js/Header.js"></script>
+<%	String navbar = (String)request.getSession().getAttribute("navbar");
+	int addnew =1;
+	int actionDropDown = 1;
+	String NameFromDb = (String)request.getSession().getAttribute("Name");
+%>
+    <nav class="navbar navbar-fixed-top" style="background-color:<%if(!"".equals(navbar) && null!=navbar){%><%=navbar%><%}else{%>#333030<%}%>;border-radius:0.0em" >
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        
+            <button type="button" data-target="#navbarCollapse" id="toggle"  data-toggle="collapse" class="navbar-toggle navbar-right hidden visible-xs visible-sm">
+                <img alt="t" src="static_resources/images/toggle.png" style="height:2.0em;width:2.0em;"  onclick="toggleTogglrBar('1')">    
+            </button>
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" id="cross" style="display:none" class="navbar-toggle navbar-right">
+            <img alt="t" src="static_resources/images/cross.png" style="height:1.8em;width:1.8em;"  onclick="toggleTogglrBar('2')">
+            </button>
+            <a href="Home" class="navbar-brand"><span><img alt="s" src="static_resources/images/contacts.png" style="height:1.8em;width:2.0em;"></span>&nbspContactsApp</a>
+            
+            <div class="hidden visible-sm visible-xs">
+                <img src="static_resources/images/DeleteSelected.png" id="DeleteIconMobile" alt="Delete" 
+                    
+                style="height:2.0em;width:3.2em;display:none;margin-top:1.2em" class="navbar-btn " />
+            </div>
+        
+        </div>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="Home">Home</a></li>
+                <c:if test="${AddNew eq 'true'}">
+                	<li><a href="AddUpdate">Add New Contact</a></li>
+                </c:if>
+ 				<c:if test="${actionDropDown eq 'true'}">
+                <li class="dropdown ">
+                    <a data-toggle="dropdown" class="dropdown-toggle navbar-right" href="#">Action <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="AddUpdate" style="color:#0b75ff"><b><i>Add a New Contact</i></b></a></li>
+                        <li onclick="importContactsDiv()" data-toggle="collapse" data-target="#navbarCollapse" class="hidden visible-xs visible-sm">
+                            <a style="color:#0b75ff" href="#"><b><i>Import mulltiple contacts</i></b></a>
+                        </li>
+                        <li onclick="importContactsDiv()" class="hidden visible-lg"><a style="color:#0b75ff" href="#"><b><i>Import mulltiple contacts</i></b></a></li>
+                        <li onclick="exportContactsDiv()" data-toggle="collapse" data-target="#navbarCollapse" class="hidden visible-xs visible-sm">
+                            <a style="color:#0b75ff"><b><i>Export contacts</i></b></a>
+                        </li>
+                        <li onclick="exportContactsDiv()" class="hidden visible-lg"><a style="color:#0b75ff" href="#"><b><i>Export contacts</i></b></a></li>
+                        <li onclick="quickAddModal()"><a style="color:#0b75ff" href="#"><b><i>Quick Add</i></b></a></li>                      
+                    </ul>
+                </li></c:if>
+                
+                <li class="hidden visible-lg bs-example">
+                    <img src="static_resources/images/DeleteSelected.png" id="DeleteIcon" name="DeleteIcon" alt="Delete" 
+                     style="height:3.2em;width:4.2em;display:none;" class="btn " />
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%
+                                                                            if(NameFromDb!="" && NameFromDb!=null){
+                                                                            %><%=NameFromDb%><%}else{%>Sign In<%}%><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="AccountSettings" style="color:#0b75ff">Account Settings&nbsp&nbsp
+                            <img alt="s" src="static_resources/images/settings.png" style="height:1.5em;width:1.5em;"></a>
+                        </li>
+                        <li>
+                            <a href="LogOut" style="color:#0b75ff">Log Out&nbsp&nbsp&nbsp
+                            <img alt="s" src="static_resources/images/logout.png" style="height:1.2em;width:1.2em;"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+			<c:if test="${showSearchbar eq 'true'}">
+            <form class="navbar-form navbar-right">
+            	<div class="input-group">
+                    <input type="text" class="form-control" id="search" placeholder="Search" onkeyup="searchListedContacts()" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" onclick="#" style="height:2.4em">
+                            <img alt="s" src="static_resources/images/view.png" style="height:1.5em;width:1.3em;">
+                        </button>
+                    </span>
+                </div>
+            </form>
+			
+                <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown ">
+                    <a data-toggle="dropdown" id="sortBy" class="dropdown-toggle " href="#" >Sort by <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li onclick="sortContact('1')"><a href="#" style="color:#0b75ff">Name</a></li>
+                        <li onclick="sortContact('2')"><a href="#" style="color:#0b75ff">City</a></li>
+                        <li onclick="sortContact('3')"><a href="#" style="color:#0b75ff">Gender</a></li>
+                    </ul>
+                </li>
+                </ul>
+                </c:if>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid" style="margin-top:5.0em;margin-bottom:3.0em" id="headerContainer">

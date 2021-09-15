@@ -1,0 +1,45 @@
+<div id="importDiv" title="Import Contacts" style="display: none;">
+					<div class="" style="margin-top: 0.0em">
+						<p>
+							<b><i>Please select a file to import contacts.</i></b>
+						</p>
+						<form action="" name="importForm" method="post"
+							enctype="multipart/form-data"
+							style="margin-left: 1.0em; margin-top: 1.5em">
+							<table>
+								<tbody>
+									<tr>
+										<td>
+											<div class="file-input-wrapper">
+												<button class="btn-file-input btn-info"
+													style="width: 8.0em; display: inline;">Upload File</button>
+												<input type="file" name="file" id="inputFile" size="50">
+											</div>
+										</td>
+										<td><img src="static_resources/images/Excel.png"
+											id="excelImport" alt="excelImport"
+											title="click here to download template file.."
+											onclick="window.location.href='static_resources/Template/Template.zip'"
+											style="height: 2.2em; width: 2.2em; display: inline; margin-left: 1.0em">
+											<!--<br />--></td>
+									</tr>
+									<tr>
+										<td style="margin-left: 0.5em">CSV/XLS/VCF</td>
+										<td>Download Template</td>
+									</tr>
+									<tr>
+										<td><input type="button" value="Import"
+											class="btn btn-primary btn-xs "
+											style="width: 8.0em; margin-top: 1.0em"
+											onclick="submitImportExportForm('1','')"></td>
+										<td><input type="button" value="Cancel"
+											class="btn btn-default btn-xs "
+											style="width: 8.0em; margin-top: 1.0em" id="closeImport"
+											data-dismiss="ui-dialog-content" onclick="closeImportpopup()">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>

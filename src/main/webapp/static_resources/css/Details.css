@@ -1,0 +1,173 @@
+@CHARSET "ISO-8859-1";
+
+.header {
+	Height: 50px;
+	width: 100%;
+	background-color: #0080ff;
+	margin-left: 5px;
+	display: inline-block;
+	text-align: center;
+}
+
+.body {
+	Height: 700px;
+	width: 100%;
+	/*background-color: #c5bcc5;*/
+	margin-left: 5px;
+	display: inline-block;
+	text-align: left;
+}
+
+.footer {
+	Height: 40px;
+	width: 100%;
+	background-color: #0080ff;
+	margin-left: 5px;
+	display: inline-block;
+	text-align: center;
+}
+
+#details {
+	margin-top: 0px;
+}
+
+
+
+.padding-left{
+padding-left:100px;
+}
+
+#loading {
+   /*top: 0;
+   left: 0;
+   position: fixed;
+   display: block;*/
+   /*opacity: 0.7;*/
+   /*background-color: #fff;
+   z-index: 99;
+   text-align: center;*/
+   
+}
+
+#loading-image {
+margin-left:27%;
+  position: absolute;
+  /*top: 120px;
+  left: 350px;*/
+  margin-top:5.0em;
+  z-index: 100;
+  height:50px;
+  width:100px;
+}
+
+#signtext{
+  position: absolute;
+  left: 200px;
+  width:100px;
+}
+
+.wel{
+height:32em;
+}
+.signin{
+  /*position: absolute;*/
+margin-top: 80px;
+margin-left: 130px;
+/*z-index: 100;*/
+height:200px;
+width:200px;
+}
+
+/* Code for snackbar showed upon delete contacts   >>> Start */
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 60px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 30px; opacity: 0;} 
+    to {bottom: 60px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 30px; opacity: 0;}
+    to {bottom: 60px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 60px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 60px; opacity: 0;}
+}
+
+/* Code for snackbar showed upon delete contacts   >>> End */
+
+
+/* Code for thumnail  >>> Start */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 70%;
+    height:100%;
+    margin-top:3.0em;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+/* Code for thumnail  >>> Start */
+
+
+
+@media screen and (max-width: 767px) {
+  table caption {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 2.0em;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
