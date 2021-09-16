@@ -101,11 +101,12 @@ public class RemoveServiceImpl implements RemoveService{
                 int id = 0;
                     for(int i=0;i<selectedContacts.length;i++){
                         id = Integer.parseInt(selectedContacts [i]);
-                        sb.append(id);
+                        sb.append("'"+id+"'");
                         if(i<selectedContacts.length-1)
                         sb.append(" OR ID=");
                 }
-                        sql=sb.toString();                        
+                        sql=sb.toString();  
+                        System.out.println(sql);
                         ps=conn.prepareStatement(sql);
                         stInt =  ps.executeUpdate();
                         if(stInt == 1)

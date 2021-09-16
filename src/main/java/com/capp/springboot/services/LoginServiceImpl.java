@@ -103,7 +103,7 @@ public class LoginServiceImpl implements LoginService{
 				ps.setString(3, "");
 				statInt = ps.executeUpdate();
 				if(statInt == 1) {
-					String createTable="CREATE TABLE "+usertable+" (NAME VARCHAR(200),GENDER VARCHAR(20),EMAIL VARCHAR(200),PHONE VARCHAR(200),CITY VARCHAR(200),ADDRESS VARCHAR(200),STATE VARCHAR(200),ID VARCHAR(200),DP BINARY)";
+					String createTable="CREATE TABLE "+usertable+" (NAME VARCHAR(200),GENDER VARCHAR(20),EMAIL VARCHAR(200),PHONE VARCHAR(200),CITY VARCHAR(200),ADDRESS VARCHAR(200),STATE VARCHAR(200),ID VARCHAR(200),DP bytea)";
 					stmt = con.createStatement();
 					stmt.executeUpdate(createTable);
 					status = "Success";

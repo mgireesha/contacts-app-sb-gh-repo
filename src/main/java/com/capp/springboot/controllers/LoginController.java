@@ -24,6 +24,11 @@ public class LoginController {
 	
 	private static final String USER_DETAIL_TABLE = "CONTACTS_APP_CREDS";
 	
+	@RequestMapping("/")
+	public ModelAndView welcomeMessage() {
+		return new ModelAndView("Login");
+	}
+	
 	@RequestMapping(value="/login" , method = RequestMethod.POST)
 	public ModelAndView validateLogin(HttpServletRequest request) {
 		String unserName = request.getParameter("uname");

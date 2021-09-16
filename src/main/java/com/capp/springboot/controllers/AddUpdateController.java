@@ -55,7 +55,7 @@ public class AddUpdateController {
 		mv.setViewName("AddUpdate");
 		}else {
 			mv.addObject("errorMsg", "Session expired, login again");
-			mv.setViewName("../../Login");
+			mv.setViewName("Login");
 		}
 		return mv;
 	}

@@ -23,7 +23,7 @@ public class AccountSettingsController {
 			mv.setViewName("AccountSettings");
 		}else {
 			mv.addObject("errorMsg", "Session expired, login again");
-			mv.setViewName("../../Login");
+			mv.setViewName("Login");
 		}
 		return mv;
 	}

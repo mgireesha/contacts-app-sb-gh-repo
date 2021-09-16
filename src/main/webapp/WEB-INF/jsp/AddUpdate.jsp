@@ -124,6 +124,6 @@
 </div>
 <script src="static_resources/choosen/init.js" type="text/javascript" charset="utf-8"></script>
 <%@ include file="Footer.txt" %>
-<%@ include file="printPageContext.jsp" %>
+<%-- <%@ include file="printPageContext.jsp" %> --%>
 </body>
 </html>

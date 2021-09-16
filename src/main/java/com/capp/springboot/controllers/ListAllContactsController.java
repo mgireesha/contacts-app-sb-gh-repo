@@ -37,7 +37,7 @@ public class ListAllContactsController {
 			((ClassPathXmlApplicationContext) ctx).close();
 		}else {
 			mv.addObject("errorMsg", "Session expired, login again");
-			mv.setViewName("../../Login");
+			mv.setViewName("Login");
 		}
 		return mv;
 	}
@@ -59,7 +59,7 @@ public class ListAllContactsController {
 			((ClassPathXmlApplicationContext) ctx).close();
 		}else {
 			mv.addObject("errorMsg", "Session expired, login again");
-			mv.setViewName("../../Login");
+			mv.setViewName("Login");
 		}
 		return mv;
 	}

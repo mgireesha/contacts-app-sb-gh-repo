@@ -108,7 +108,7 @@ public class UpdateServiceImpl implements UpdateService {
         Connection con = null;
         try{
             con = DbUtil.getConnection();
-            String sql = "update public."+tableName+" set dp=? where id="+id;
+            String sql = "update "+tableName+" set dp=? where id="+id;
                 ps2 =con.prepareStatement(sql);
                 ps2.setBytes(1, fileContent);
                 ps2.executeUpdate();

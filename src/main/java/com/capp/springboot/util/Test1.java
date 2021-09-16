@@ -22,6 +22,7 @@ public static void main(String[] args) {
 	 */
 	Test1 test = new Test1();
 	test.getUsers();
+	test.createUser();
 	/*
 	 * test.createCredsTable(); test.createColourTable(); test.createUser();
 	 */
@@ -34,13 +35,21 @@ public void getUsers() {
 	ResultSet rs = null;
 	try {
 		con = DbUtil.getConnection("cloudPostgress");
-		String getUsers = "SELECT * FROM public.CONTACTS_APP_100001";
+		String getUsers = "SELECT * FROM public.CONTACTS_APP_CREDS";
 		stmt = con.createStatement();
 		rs = stmt.executeQuery(getUsers);
 		while(rs.next()) {
-			System.out.println(rs.getString(1));
+			System.out.println(rs.getString("USERNAME"));
+			System.out.println(rs.getString("PASSWORD"));
+			System.out.println(rs.getString("tablename"));
 		}
 	} catch (Exception e) {
+		try {
+			DbUtil.closeResources(con, stmt, rs);
+		} catch (DaoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		System.out.println("Failed to create table");
 		e.printStackTrace();
 	}
@@ -120,14 +129,16 @@ public String createUser() {
 		ps.setString(6, userObj.getGender());
 		ps.setInt(7, id);
 		ps.setString(8, "basic");
-		statInt = ps.executeUpdate();
+		//statInt = ps.executeUpdate();
+		statInt=1;
 		if(statInt==1) {
 			ps = con.prepareStatement(saveToColour); 
 			ps.setString(1, usertable);
 			ps.setString(2, "");
 			ps.setString(3, "");
-			statInt = ps.executeUpdate();
+			//statInt = ps.executeUpdate();
 			if(statInt == 1) {
+				usertable="CONTACTS_APP_100004";
 				String createTable="CREATE TABLE "+usertable+" (NAME VARCHAR(200),GENDER VARCHAR(20),EMAIL VARCHAR(200),PHONE VARCHAR(200),CITY VARCHAR(200),ADDRESS VARCHAR(200),STATE VARCHAR(200),ID VARCHAR(200),DP bytea)";
 				stmt = con.createStatement();
 				stmt.executeUpdate(createTable);
