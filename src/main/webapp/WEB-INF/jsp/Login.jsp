@@ -60,13 +60,13 @@
             </div>
             <div class="modal-body respons" id="loadingmodal" style="display:none;">
     			<div id="loading-imag" ><p id="signtex">Please wait, we are verifying your email address.....</p>
-  					<img  src="resources/images/Loading.gif" alt="Loading..." style="height:80px;width:80px;margin-left:240px;margin-top:17px" /></div>
+  					<img  src="static_resources/images/Loading.gif" alt="Loading..." style="height:80px;width:80px;margin-left:240px;margin-top:17px" /></div>
 			</div>
         
             <div class="modal-body respon" id="respon" style="display:none;">
             	<p id="theresponse" style="margin-left:10px"></p>
             	<p style="color:red;margin-left:10px" id="sendagainp">Didn't recieve your password, click below to send again</p>
-            	<button class="btn btn-warning btn-xs invdiv pwdreset" id="sendagain"  style="margin-left:10px">Send again</button><button  class="btn btn-primary btn-xs show-reset1" id="reenter" style="display:none;margin-left:10px">Re-Enter Eamial</button>
+            	<button class="btn btn-warning btn-xs invdiv pwdreset" id="sendagain"  style="margin-left:10px" onClick="sendPwdRs()">Send again</button><button  class="btn btn-primary btn-xs show-reset1" id="reenter" style="display:none;margin-left:10px">Re-Enter Eamial</button>
             </div>
             <div class="modal-body respons" id="respons" style="display:block;">
                 <h5>Please Enter Your Registered Email to Reset Password</h5>
@@ -74,7 +74,7 @@
             </div>
             <div class="modal-footer" id="modalfooter">
             	<button class="btn btn-default" data-dismiss="modal" id="cancel" aria-label="Close">Cancel</button>
-                <button type="button" class="btn btn-primary invdiv pwdreset" id="invdiv"   >Send Email</button><span>
+                <button type="button" class="btn btn-primary invdiv pwdreset" id="invdiv"  onClick="sendPwdRs()" >Send Email</button><span>
                 <button class="btn btn-default" data-dismiss="modal" id="cancel1" aria-label="Close" style="display:none">Cancel</button></span>
             </div>
         </div>

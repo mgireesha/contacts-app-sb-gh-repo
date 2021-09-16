@@ -21,12 +21,39 @@ public static void main(String[] args) {
 	 * TODO Auto-generated catch block e.printStackTrace(); }
 	 */
 	Test1 test = new Test1();
+	//test.addColumn();
 	test.getUsers();
-	test.createUser();
+	//test.createUser();
 	/*
 	 * test.createCredsTable(); test.createColourTable(); test.createUser();
 	 */
 	
+}
+
+public void addColumn() {
+	Connection con = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	try {
+		con = DbUtil.getConnection("cloudPostgress");
+		String altertable = "ALTER TABLE public.CONTACTS_APP_CREDS ADD COLUMN OTP varchar(250)";
+		stmt = con.createStatement();
+		stmt.executeUpdate(altertable);
+		while(rs.next()) {
+			System.out.println(rs.getString("USERNAME"));
+			System.out.println(rs.getString("PASSWORD"));
+			System.out.println(rs.getString("tablename"));
+		}
+	} catch (Exception e) {
+		try {
+			DbUtil.closeResources(con, stmt, rs);
+		} catch (DaoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("Failed to create table");
+		e.printStackTrace();
+	}
 }
 
 public void getUsers() {
@@ -35,13 +62,13 @@ public void getUsers() {
 	ResultSet rs = null;
 	try {
 		con = DbUtil.getConnection("cloudPostgress");
-		String getUsers = "SELECT * FROM public.CONTACTS_APP_CREDS";
+		String getUsers = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE USERNAME='mgireesha73@gmail.com' AND OTP='48f5f23'";
 		stmt = con.createStatement();
 		rs = stmt.executeQuery(getUsers);
 		while(rs.next()) {
 			System.out.println(rs.getString("USERNAME"));
 			System.out.println(rs.getString("PASSWORD"));
-			System.out.println(rs.getString("tablename"));
+			System.out.println(rs.getString("OTP"));
 		}
 	} catch (Exception e) {
 		try {

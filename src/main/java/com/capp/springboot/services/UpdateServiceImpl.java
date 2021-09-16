@@ -13,22 +13,31 @@ import com.capp.springboot.util.DbUtil;
 public class UpdateServiceImpl implements UpdateService {
 
 	@Override
-	public String updatePassword(String currentPwd, String newPwd, String tableName) {
+	public String updatePassword(String currentPwd, String newPwd, String tableName, String isFromForgoPwdMail, String registeredEmail) {
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int updateSt = 0;
 		String status = "WRONG_PASSWORD";
-		String checkCuPwd = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE TABLENAME='"+tableName+"' AND PASSWORD='"+currentPwd+"'";
-		String updatePswd = "UPDATE public.CONTACTS_APP_CREDS SET PASSWORD='"+newPwd+"' WHERE TABLENAME='"+tableName+"'";
+		String checkCuPwd = "";
+		if("yes".equalsIgnoreCase(isFromForgoPwdMail))
+			checkCuPwd = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE USERNAME='"+registeredEmail+"' AND OTP='"+currentPwd+"';";
+		else
+			checkCuPwd = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE TABLENAME='"+tableName.substring("public.".length(), tableName.length())+"' AND PASSWORD='"+currentPwd+"';";
 		try {
 			con = DbUtil.getConnection();
 			stmt = con.createStatement();
+			System.out.println(checkCuPwd);
 			rs = stmt.executeQuery(checkCuPwd);
 			while(rs.next()) {
+				if("yes".equalsIgnoreCase(isFromForgoPwdMail))
+					tableName = rs.getString("TABLENAME");
+				String updatePswd = "UPDATE public.CONTACTS_APP_CREDS SET PASSWORD='"+newPwd+"' WHERE TABLENAME='"+tableName+"'";
 				updateSt = stmt.executeUpdate(updatePswd);
-				if(updateSt==1)
+				if(updateSt==1) {
 					status="Success";
+					break;
+				}
 			}
 		} catch (DaoException e) {
 			e.printStackTrace();

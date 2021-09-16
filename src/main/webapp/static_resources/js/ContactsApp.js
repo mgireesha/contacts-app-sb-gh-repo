@@ -341,3 +341,76 @@ document.getElementById("sessionExpire2").style.display = "inline";
 function openChangeColour(){
     $("#colourPicker").modal();
 }
+
+function ResetPassword(){
+document.getElementById("matchpwd").style.display="none";
+document.getElementById("invalidpwd").style.display="none";
+//var cupwd=$('#cupwd').value;
+var otp=document.getElementById("otp").value;
+var newpwd=document.getElementById("newpwd").value;
+var conpwd=document.getElementById("conpwd").value;
+var userName=$("#userName").val();
+
+if(newpwd==conpwd){
+ var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function(){
+ if(xhttp.status==300){
+        document.getElementById("invalidpwd").style.display="block";
+        $('#cupwd').css('border-color', 'red');
+        $('#cupwd').focus();
+         }
+         if(xhttp.status==200){
+         $("#text-success").show();
+         $("#signIn").show();
+         $('#accountSettingsUpdateModal').modal('show');
+         }
+ };
+ xhttp.open("POST", "updatepwd?cupwd="+otp+"&&copwd="+conpwd+"&&registeredEmail="+userName+"&&isFromForgoPwdMail=yes", true);
+  xhttp.send();
+
+}else{
+    document.getElementById("matchpwd").style.display="block";
+    $('#copwd').css('border-color', 'red');
+    $('#copwd').focus();
+}
+}
+function ASCancelfn(){
+$('#listContacts,CV-success').hide();
+$('#accountSettingsUpdateModal').modal('hide');
+hideAll();
+}
+
+function sendPwdRs(){
+	var xhttp;
+var email=document.getElementById("regEmail").value;
+var email1 = /^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/;
+var a="a";
+if(email.match(email1) || a=="a")
+{
+var registeredEmail=email;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById("loadingmodal").style.display = "none";
+document.getElementById("respon").style.display = "inline";
+document.getElementById("theresponse").style.display = "block";
+document.getElementById("sendagain").style.display = "inline";
+document.getElementById("sendagainp").style.display = "block";
+document.getElementById("reenter").style.display = "inline";
+document.getElementById("theresponse").innerHTML = this.responseText;
+}
+};
+xhttp.open("GET", "send-pw-reset-link?registeredEmail="+registeredEmail, true);
+xhttp.send();
+document.getElementById("theresponse").style.display = "none";
+document.getElementById("sendagain").style.display = "none";
+document.getElementById("sendagainp").style.display = "none";
+document.getElementById("loadingmodal").style.display = "block";
+document.getElementById("invdiv").style.display = "none";
+document.getElementById("respons").style.display = "none";
+document.getElementById("reenter").style.display = "none";
+// $(function() {
+// $('#testmodal2').modal('show');
+// });
+}else{alert("Please enter valid email");}
+}

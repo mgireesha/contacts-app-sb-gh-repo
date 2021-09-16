@@ -130,6 +130,7 @@
         </div>
     </div>
 </div>
+	<input type="hidden" name="TableNameFromDb" id="TableNameFromDb" value="${sessionScope.tableName}" />
     <%@ include file="colourPicker.html" %>
      <%@ include file="Footer.txt" %>
 </body>
