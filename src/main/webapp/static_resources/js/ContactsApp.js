@@ -381,18 +381,18 @@ hideAll();
 }
 
 function sendPwdRs(){
-	var xhttp;
+var xhttp;
+$("#invalidEmailMsg").show()
 var email=document.getElementById("regEmail").value;
 var email1 = /^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/;
-var a="a";
-if(email.match(email1) || a=="a")
+if(email.match(email1) && email!="")
 {
 var registeredEmail=email;
 xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
 document.getElementById("loadingmodal").style.display = "none";
-document.getElementById("respon").style.display = "inline";
+document.getElementById("respon").style.display = "block";
 document.getElementById("theresponse").style.display = "block";
 document.getElementById("sendagain").style.display = "inline";
 document.getElementById("sendagainp").style.display = "block";
@@ -412,5 +412,22 @@ document.getElementById("reenter").style.display = "none";
 // $(function() {
 // $('#testmodal2').modal('show');
 // });
-}else{alert("Please enter valid email");}
+}else{$("#invalidEmailMsg").show()}
+}
+
+function togleDarkTheme(){
+	var currentTheme = $("#currentTheme").val();
+	if(currentTheme == "dark"){
+		$("#currentTheme").val("light");
+		$(".control-label,.containe,.themetext").removeClass("darkthemetextColor");
+		$(".mailHtml, .container-fluid").removeClass("darkThemeClass");
+		$("#darkThemeButton").show();
+		$("#lightThemeButton").hide();
+	}else{
+		$("#currentTheme").val("dark");
+		$(".control-label,.containe,.themetext").addClass("darkthemetextColor");
+		$(".mailHtml, .container-fluid").addClass("darkThemeClass");
+		$("#darkThemeButton").hide();
+		$("#lightThemeButton").show();
+	}
 }

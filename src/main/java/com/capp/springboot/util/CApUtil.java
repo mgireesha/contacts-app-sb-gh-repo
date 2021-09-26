@@ -41,7 +41,7 @@ public class CApUtil {
         Statement stmt =null;
         String navbar = "";
         try{
-            String sqlStmt="SELECT * FROM public.cONTACTS_APP_COLOURS WHERE IDENTIFIER='"+identifier+"'";
+            String sqlStmt="SELECT * FROM public.cONTACTS_APP_COLOURS WHERE IDENTIFIER='"+identifier.substring("public.".length(), identifier.length())+"'";
             con = DbUtil.getConnection();
             stmt = con.createStatement();
             colourSet = stmt.executeQuery(sqlStmt);

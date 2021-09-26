@@ -50,14 +50,10 @@ var show_reset1=$('.show-reset1');
 //$("#testmodal").modal('show');
 show_reset1.click(function(){
 //alert(show_reset1);
-document.getElementById("cancel").style.display = "none";
 document.getElementById("cancel1").style.display = "inline";
 document.getElementById("invdiv").style.display = "inline";
-document.getElementById("respons").style.display = "inline";
-document.getElementById("sendagain").style.display = "none";
-document.getElementById("theresponse").style.display = "none";
-document.getElementById("sendagainp").style.display = "none";
-document.getElementById("reenter").style.display = "none";
+$("#cancel,#sendagain,#theresponse,#sendagainp,#reenter,#respon,#invalidEmailMsg").hide();
+$("#respons").show();
 // $("#testmodal2").modal('show');
 })
 });
@@ -173,4 +169,8 @@ attachCheckboxHandlers();
 
 function showRegModal(){
 	$("#RegisterModal").modal('show');
+}
+
+function closeRegModal(){
+	$("#RegisterModal").modal("hide");
 }

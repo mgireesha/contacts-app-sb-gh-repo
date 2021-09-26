@@ -22,6 +22,7 @@ public static void main(String[] args) {
 	 */
 	Test1 test = new Test1();
 	//test.addColumn();
+	test.getColours();
 	test.getUsers();
 	//test.createUser();
 	/*
@@ -29,7 +30,29 @@ public static void main(String[] args) {
 	 */
 	
 }
-
+public void getTables(String schema) {
+	Connection con = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	try {
+		con = DbUtil.getConnection("cloudPostgress");
+		String selQuery = "SELECT * FROM information_schema.tables WHERE table_schema = '"+schema+"'";
+		stmt = con.createStatement();
+		rs = stmt.executeQuery(selQuery);
+		while(rs.next()) {
+			System.out.println(rs.getString("TABLE_NAME"));
+		}
+	} catch (Exception e) {
+		try {
+			DbUtil.closeResources(con, stmt, rs);
+		} catch (DaoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("Failed to create table");
+		e.printStackTrace();
+	}
+}
 public void addColumn() {
 	Connection con = null;
 	Statement stmt = null;
@@ -62,13 +85,35 @@ public void getUsers() {
 	ResultSet rs = null;
 	try {
 		con = DbUtil.getConnection("cloudPostgress");
-		String getUsers = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE USERNAME='mgireesha73@gmail.com' AND OTP='48f5f23'";
+		String getUsers = "SELECT * FROM public.CONTACTS_APP_CREDS";// WHERE USERNAME='mgireesha73@gmail.com' AND OTP='48f5f23'";
 		stmt = con.createStatement();
 		rs = stmt.executeQuery(getUsers);
 		while(rs.next()) {
-			System.out.println(rs.getString("USERNAME"));
-			System.out.println(rs.getString("PASSWORD"));
-			System.out.println(rs.getString("OTP"));
+			System.out.println(rs.getString("NAME")+", "+rs.getString("USERNAME")+", "+rs.getString("PASSWORD")+", "+rs.getString("TABLENAME"));
+		}
+	} catch (Exception e) {
+		try {
+			DbUtil.closeResources(con, stmt, rs);
+		} catch (DaoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("Failed to create table");
+		e.printStackTrace();
+	}
+}
+
+public void getColours() {
+	Connection con = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	try {
+		con = DbUtil.getConnection("cloudPostgress");
+		String getUsers = "SELECT * FROM public.CONTACTS_APP_COLOURS";// WHERE USERNAME='mgireesha73@gmail.com' AND OTP='48f5f23'";
+		stmt = con.createStatement();
+		rs = stmt.executeQuery(getUsers);
+		while(rs.next()) {
+			System.out.println(rs.getString("IDENTIFIER")+", "+rs.getString("NAVBAR")+", "+rs.getString("HEADERTEXT"));
 		}
 	} catch (Exception e) {
 		try {

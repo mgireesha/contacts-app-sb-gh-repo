@@ -1,6 +1,6 @@
 	</div> <%-- closed div which opened in header.txt --%>
-	<div class="navbar navbar-fixed-bottom" style="background-color:<%if(!"".equals(navbar) && null!=navbar){%><%=navbar%><%}else{%>#333030<%}%>;">
-		<div class="container-fluid">
+	<div class="navbar navbar-fixed-bottom" style="background-color:<%if(!"".equals(navbar) && null!=navbar){%><%=navbar%><%}else{%>rgb(69, 29, 93)<%}%>;">
+		<div class="">
 			<div class="text-center " style="padding-top:15px;color:#0082f5" >
 				&copy; 2017 - All rights reserved by Gireesh Inc.
 			</div>

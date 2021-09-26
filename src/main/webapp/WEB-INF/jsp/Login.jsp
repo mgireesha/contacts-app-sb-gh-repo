@@ -19,12 +19,12 @@
 <%@ include file="/WEB-INF/jsp/Header.txt" %>
 <div id="id01" class="container">
   
-  <form class="animate" action="login" method="post" style="width: 90%">
+  <form class="animate" action="login" method="post">
     <div class="imgcontainer">
  	<img src="user.png" alt="Avatar" class="avatar" style="width: 10%">
     </div>
 
-    <div class="container">
+    <div class="lFormCtnr container">
       <label for="uname"><b>Username</b></label>
       <input class="lInput" type="text" placeholder="Enter Username" name="uname" required>
 
@@ -42,10 +42,14 @@
       </label>
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <span class="show-reset">Forgot <a href="#">password?</a></span>
+    <div class="container" style="background-color:#f1f1f1;margin-left: 1em;">
+      <!-- <span class="show-reset">Forgot <a href="#">password?</a></span>
       <span>|</span>
-      <span onclick="showRegModal()" >New User ? <a href="#">Register here</a></span>
+      <span onclick="showRegModal()" >New User ? <a href="#">Register here</a></span> -->
+      <div class="row">
+      		<div class="col-sm-2" style="padding: 0.5em"><span class="show-reset">Forgot <a href="#">password?</a></span></div>
+      		<div class="col-sm-3" style="padding: 0.5em"><span onclick="showRegModal()" >New User ? <a href="#">Register here</a></span></div>
+      </div>
     </div>
   </form>
 </div>
@@ -59,23 +63,27 @@
                 <h4 class="modal-title" style="color:red">Password Reset</h4>
             </div>
             <div class="modal-body respons" id="loadingmodal" style="display:none;">
-    			<div id="loading-imag" ><p id="signtex">Please wait, we are verifying your email address.....</p>
-  					<img  src="static_resources/images/Loading.gif" alt="Loading..." style="height:80px;width:80px;margin-left:240px;margin-top:17px" /></div>
+    			<div id="loading-imag" ><p id="signtex">Please wait, we are verifying your email address.</p>
+  					<div class="loadingDiv">
+  						<img  src="static_resources/images/Loading.gif" alt="Loading." style="height:80px;width:80px;" />
+  					</div>
+  				</div>
 			</div>
         
             <div class="modal-body respon" id="respon" style="display:none;">
             	<p id="theresponse" style="margin-left:10px"></p>
-            	<p style="color:red;margin-left:10px" id="sendagainp">Didn't recieve your password, click below to send again</p>
-            	<button class="btn btn-warning btn-xs invdiv pwdreset" id="sendagain"  style="margin-left:10px" onClick="sendPwdRs()">Send again</button><button  class="btn btn-primary btn-xs show-reset1" id="reenter" style="display:none;margin-left:10px">Re-Enter Eamial</button>
+            	<!-- <p style="color:red;margin-left:10px" id="sendagainp">Didn't recieve your password, click below to send again</p> -->
+            	<button class="btn btn-warning btn-xs invdiv pwdreset" id="sendagain"  style="margin-left:10px" onClick="sendPwdRs()" title="Didn't recieve your password, click this button to send again">Send again</button><button  class="btn btn-primary btn-xs show-reset1" id="reenter" style="display:none;margin-left:10px">Re-Enter Eamial</button>
             </div>
             <div class="modal-body respons" id="respons" style="display:block;">
-                <h5>Please Enter Your Registered Email to Reset Password</h5>
+                <h5>Please Enter Your Registered Email to Initiate Password Reset</h5>
                 <input type="text" name="regEmail" id="regEmail" class="form-control" autofocus />
+                <span id="invalidEmailMsg" style="color: red;display: none;">Please enter valid email</span>
             </div>
             <div class="modal-footer" id="modalfooter">
-            	<button class="btn btn-default" data-dismiss="modal" id="cancel" aria-label="Close">Cancel</button>
+            	<button class="btn btn-default" data-dismiss="modal" id="cancel" aria-label="Close">Close</button>
                 <button type="button" class="btn btn-primary invdiv pwdreset" id="invdiv"  onClick="sendPwdRs()" >Send Email</button><span>
-                <button class="btn btn-default" data-dismiss="modal" id="cancel1" aria-label="Close" style="display:none">Cancel</button></span>
+                <button class="btn btn-default" data-dismiss="modal" id="cancel1" aria-label="Close" style="display:none">Close</button></span>
             </div>
         </div>
     </div>
@@ -160,7 +168,7 @@
             </div>
             <div class="modal-footer" id="modalfooter">
             	<button type="button" name="save" id="saveBtn" class="btn btn-success" style="width:41.5%;" onclick="validate();">Submit</button>
-                <button type="button" name="cancel" class="btn btn-default" style="width:41.5%;" onClick="window.location.replace('Home')">Cancel</button>
+                <button type="button" name="cancel" class="btn btn-default" style="width:41.5%;" onClick="closeRegModal()">Cancel</button>
             </div>
         </div>
     </div>

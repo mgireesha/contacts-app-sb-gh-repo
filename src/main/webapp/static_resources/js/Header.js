@@ -50,6 +50,7 @@ $("#toggle").removeClass("visible-xs");
 $("#toggle").removeClass("visible-sm");
 document.getElementById("toggle").style.display="none";
 document.getElementById("cross").style.display="inline";
+$("#navbarCollapse").show();
 }
 if(t==2){
 $("#toggle").removeClass("hidden");
@@ -60,5 +61,6 @@ document.getElementById("cross").style.display="none";
 $("#toggle").addClass("hidden");
 $("#toggle").addClass("visible-xs");
 $("#toggle").addClass("visible-sm");
+$("#navbarCollapse").hide();
 }
 }

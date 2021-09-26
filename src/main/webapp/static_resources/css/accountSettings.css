@@ -76,3 +76,11 @@
 	background: white;
 }
 
+.darkThemeClass{
+	background-color: #333333 !important;
+}
+
+.darkthemetextColor {
+	color: beige;
+}
+

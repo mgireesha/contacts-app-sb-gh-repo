@@ -24,6 +24,7 @@ public class AccountSettingsController {
 	public ModelAndView goToAccountsSettings(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		if(null!=request.getSession().getAttribute("Name")) {
+			mv.addObject("view", "AccountSettings");
 			mv.setViewName("AccountSettings");
 		}else {
 			mv.addObject("errorMsg", "Session expired, login again");
@@ -93,9 +94,11 @@ public class AccountSettingsController {
 		SendEmail send = new SendEmail();
 		boolean isRsNext = send.mailPwd(registeredEmail);
 		if(isRsNext)
-			status = "An Email with new password has been successfully sent to your registered email... ";
+			status = "An Email with password reset instructions has been successfully sent to your registered email.";
 		else
-			status = "The email you have entered is not registered....";
+			status = "The email you have entered is not registered.";
 		return status;
 	}
+	
+	
 }

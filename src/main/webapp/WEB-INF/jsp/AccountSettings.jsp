@@ -2,15 +2,17 @@
     pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html class="mailHtml">
 <head>
 <meta charset="ISO-8859-1">
 <title>Contacts App</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="static_resources/bootstrap_3.3.7/dist/js/bootstrap.min.js" ></script>
-
+<script type="text/javascript" src="static_resources/js/jquery-ui/jquery-ui.js" ></script>
+<link href="static_resources/js/jquery-ui/jquery-ui.css" rel="stylesheet" />
 <script type="text/javascript" src="static_resources/js/ContactsApp.js"></script>
+<script type="text/javascript" src="static_resources/js/Details.js"></script>
 <link href="static_resources/css/Details.css" rel="stylesheet" />
 <link href="static_resources/css/accountSettings.css" rel="stylesheet" />
 <link href="static_resources/bootstrap_3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -47,11 +49,11 @@
                               <p id="text-alertNull" style="color:red;margin-left:0.0em;display:none">Field cannot be empty</p>
         </div>
     </div>
-    <div class="form-group" style="margin-top:0.1em;">
+    <div class="form-group themetext" style="margin-top:0.1em;">
         <div class="col-sm-3">
         </div>
         <div class="col-sm-7">
-            <input type="checkbox" onclick="myFunction()">Show Password
+            <input type="checkbox" class="" onclick="myFunction()">Show Password
         </div>
     </div>
     <div class="form-group" style="margin-top:2em;">
@@ -64,7 +66,7 @@
     <div class="form-group" style="margin-top:2em;">
             <label class="control-label col-sm-3"></label>
         <div class="col-sm-6">
-            <button type="button" class="btn btn-primary active" id="uppwd" name="uppwd" style="width:100%;" onclick="openChangeColour()"><b><i>Change Colour</i></b></button>
+            <button type="button" class="btn btn-primary active" id="changeColour" name="uppwd" style="width:100%;" onclick="openChangeColour()"><b><i>Change Colour</i></b></button>
         </div>
     </div>
     </form>
@@ -130,8 +132,14 @@
         </div>
     </div>
 </div>
+	<input type="hidden" name="currentTheme" id="currentTheme" />
 	<input type="hidden" name="TableNameFromDb" id="TableNameFromDb" value="${sessionScope.tableName}" />
     <%@ include file="colourPicker.html" %>
      <%@ include file="Footer.txt" %>
+     <script type="text/javascript">
+     $(document).ready(function() {
+    	    $(".dropdown-toggle").dropdown();
+    	});
+     </script>
 </body>
 </html>

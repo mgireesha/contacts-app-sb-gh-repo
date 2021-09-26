@@ -60,11 +60,11 @@ public class UpdateServiceImpl implements UpdateService {
         Statement stmt=null;
         String updateQuery="";
         if("true".equalsIgnoreCase(navBarBgClr) && "true".equalsIgnoreCase(hdrTxtClr)){
-            updateQuery="UPDATE public.CONTACTS_APP_COLOURS SET NAVBAR='"+bgColour+"',HEADERTEXT='"+bgColour+"' WHERE IDENTIFIER='"+tableName+"'";    
+            updateQuery="UPDATE public.CONTACTS_APP_COLOURS SET NAVBAR='"+bgColour+"',HEADERTEXT='"+bgColour+"' WHERE IDENTIFIER='"+tableName.substring("public.".length(), tableName.length())+"'";    
         }else if("true".equalsIgnoreCase(navBarBgClr) && !"true".equalsIgnoreCase(hdrTxtClr)){
-            updateQuery="UPDATE public.CONTACTS_APP_COLOURS SET NAVBAR='"+bgColour+"' WHERE IDENTIFIER='"+tableName+"'";
+            updateQuery="UPDATE public.CONTACTS_APP_COLOURS SET NAVBAR='"+bgColour+"' WHERE IDENTIFIER='"+tableName.substring("public.".length(), tableName.length())+"'";
         }else if(!"true".equalsIgnoreCase(navBarBgClr) && "true".equalsIgnoreCase(hdrTxtClr)){
-            updateQuery="UPDATE public.CONTACTS_APP_COLOURS SET HEADERTEXT='"+bgColour+"' WHERE IDENTIFIER='"+tableName+"'";
+            updateQuery="UPDATE public.CONTACTS_APP_COLOURS SET HEADERTEXT='"+bgColour+"' WHERE IDENTIFIER='"+tableName.substring("public.".length(), tableName.length())+"'";
         }
         try{             
             con=DbUtil.getConnection();
