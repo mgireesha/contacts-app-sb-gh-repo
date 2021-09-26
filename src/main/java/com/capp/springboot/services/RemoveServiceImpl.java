@@ -49,8 +49,8 @@ public class RemoveServiceImpl implements RemoveService{
         Statement stmt=null;
         int deletSt = 0;
         String status ="";
-        String deleteCredDetails="DELETE FROM CONTACTS_APP_CREDS WHERE TABLENAME='"+tableName+"'";
-        String deleteColour = "DELETE FROM CONTACTS_APP_COLOURS WHERE IDENTIFIER='"+tableName+"'";
+        String deleteCredDetails="DELETE FROM public.CONTACTS_APP_CREDS WHERE TABLENAME='"+tableName.substring("public.".length(), tableName.length())+"'";
+        String deleteColour = "DELETE FROM public.CONTACTS_APP_COLOURS WHERE IDENTIFIER='"+tableName.substring("public.".length(), tableName.length())+"'";
         String dropAccount="DROP TABLE "+tableName;
             try {
                 Connection con = DbUtil.getConnection();
@@ -65,8 +65,8 @@ public class RemoveServiceImpl implements RemoveService{
                 	}
                 }
                 	
-                File imagePath = new File("D:\\SWorkspace\\ContactsAppSpringBoot\\src\\main\\webapp\\static_resources\\user_images\\"+tableName);
-                FileUtils.deleteDirectory(imagePath);
+                //File imagePath = new File("D:\\SWorkspace\\ContactsAppSpringBoot\\src\\main\\webapp\\static_resources\\user_images\\"+tableName);
+                //FileUtils.deleteDirectory(imagePath);
                 
             } catch (SQLException e) {
                     e.printStackTrace();

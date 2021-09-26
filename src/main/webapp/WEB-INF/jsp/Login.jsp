@@ -91,7 +91,7 @@
     </div>
 </div>
 
-<div id="RegisterModal" class="modal fade " data-backdrop="static" style="padding-top:2em">
+<div id="RegisterModal" class="modal fade " data-backdrop="static" style="padding-top:2em;top:1em">
     <div class="modal-dialog">
         <div class="modal-content" style="width: 100%">
             <div class="modal-header">
@@ -99,43 +99,25 @@
                 <h4 class="modal-title" style="color:green">Register</h4>
             </div>
             <div class="modal-body respons" id="loadingmodal" style="display:none;">
-    			<div id="loading-imag" ><p id="signtex">Please wait, we are registering your user.....</p>
-  					<img  src="static_resources/images/Loading.gif" alt="Loading..." style="height:80px;width:80px;margin-left:240px;margin-top:17px" /></div>
+    			<div id="loading-imag" ><p id="signtex">Please wait, we are registering your user.</p>
+  					<div class="loadingDiv">
+  						<img  src="static_resources/images/Loading.gif" alt="Loading." style="height:80px;width:80px;" />
+  					</div>
+  				</div>
 			</div>
         
-            <div class="modal-body regSuccess" id="respon" style="display:none;">
+            <div class="modal-body regSuccess" id="respon" style="display:none;height: 8em">
             	<p id="theresponse" style="margin-left:10px"></p>
-            	<p style="color:green;margin-left:10px" id="sendagainp">You are Successfully registered. Click cancel and login..</p>
+            	<p style="color:green;margin-left:10px" id="sendagainp">You are Successfully registered. Click cancel and login.</p>
+            	<button type="button" name="cancel" class="btn btn-default" style="width: 21.5%;float: right;" onclick="closeRegModal()">Close</button>
             </div>
             <div class="modal-body regForm" id="regForm" style="display:block;">
                 <div class="alert alert-warning">
                 <form action="Registering.jsp" method="POST" name="register" id="register" class="form-horizontal">
                 <div class="form-group">
-                    <label class="control-label col-sm-4">First Name</label>
+                    <label class="control-label col-sm-4">Full Name</label>
                     <div class="col-sm-7">
                         <input type="text" id="fname" name="fname" class="form-control"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-4">Last Name</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="lname" name="lname"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-4">Gender</label>
-                    <div class="col-sm-7">
-                        <div class="radio ">
-                            <label>
-                                <input type="radio" id="Male" name="radio" value="Male"/>
-                                Male
-                            </label>
-                             
-                            <label>
-                                <input type="radio" id="Female" name="radio" value="Female"/>
-                                Female
-                            </label>
-                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -151,7 +133,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4">Create New Password</label>
+                    <label class="control-label col-sm-4">New Password</label>
                     <div class="col-sm-7">
                         <input type="password" class="form-control" id="crtpwd" name="crtpwd"/>
                     </div>
@@ -166,12 +148,19 @@
                 <input type="hidden" name="view" value="basic"/>
                 
             </form>
+            <div class="form-group">
+            		<label class="control-label col-sm-4"></label>
+                    <div class="col-sm-7">
+                        <button type="button" name="save" id="saveBtn" class="btn btn-success" style="width:41.5%;" onclick="validate();">Submit</button>
+                    	<button type="button" name="cancel" class="btn btn-default" style="width:41.5%;" onClick="closeRegModal()">Cancel</button>
+                    </div>
+             </div>
            </div>
             </div>
-            <div class="modal-footer" id="modalfooter">
+            <!-- <div class="modal-footer" id="modalfooter">
             	<button type="button" name="save" id="saveBtn" class="btn btn-success" style="width:41.5%;" onclick="validate();">Submit</button>
                 <button type="button" name="cancel" class="btn btn-default" style="width:41.5%;" onClick="closeRegModal()">Cancel</button>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
