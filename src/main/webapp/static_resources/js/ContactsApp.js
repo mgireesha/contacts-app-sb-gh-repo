@@ -382,7 +382,7 @@ hideAll();
 
 function sendPwdRs(){
 var xhttp;
-$("#invalidEmailMsg").show()
+$("#invalidEmailMsg").hide();
 var email=document.getElementById("regEmail").value;
 var email1 = /^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/;
 if(email.match(email1) && email!="")
@@ -394,10 +394,15 @@ if (this.readyState == 4 && this.status == 200) {
 document.getElementById("loadingmodal").style.display = "none";
 document.getElementById("respon").style.display = "block";
 document.getElementById("theresponse").style.display = "block";
-document.getElementById("sendagain").style.display = "inline";
+if(this.responseText=="NO_REG"){
+	document.getElementById("theresponse").innerHTML ="The email you have entered is not registered.";
+}else{
+	document.getElementById("theresponse").innerHTML = this.responseText;
+	document.getElementById("sendagain").style.display = "inline";
+}
+
 document.getElementById("sendagainp").style.display = "block";
 document.getElementById("reenter").style.display = "inline";
-document.getElementById("theresponse").innerHTML = this.responseText;
 }
 };
 xhttp.open("GET", "send-pw-reset-link?registeredEmail="+registeredEmail, true);
@@ -412,9 +417,15 @@ document.getElementById("reenter").style.display = "none";
 // $(function() {
 // $('#testmodal2').modal('show');
 // });
-}else{$("#invalidEmailMsg").show()}
+}else{
+	if(email==""){
+		document.getElementById("regEmail").setCustomValidity("This is required field.");
+		document.getElementById("regEmail").reportValidity();
+	}else{
+		$("#invalidEmailMsg").show();
+	}
 }
-
+}
 function togleDarkTheme(){
 	var currentTheme = $("#currentTheme").val();
 	if(currentTheme == "dark"){

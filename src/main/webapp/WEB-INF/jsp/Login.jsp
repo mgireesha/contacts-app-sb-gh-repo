@@ -25,7 +25,7 @@
     </div>
 
     <div class="lFormCtnr container">
-      <label for="uname"><b>Username</b></label>
+      <label for="uname"><b>Registered Email</b></label>
       <input class="lInput" type="text" placeholder="Enter Username" name="uname" required>
 
       <label for="psw"><b>Password</b></label>
@@ -79,7 +79,7 @@
             </div>
             <div class="modal-body respons" id="respons" style="display:block;">
                 <h5>Please Enter Your Registered Email to Initiate Password Reset</h5>
-                <input type="text" name="regEmail" id="regEmail" class="form-control" autofocus />
+                <input type="text" name="regEmail" id="regEmail" class="form-control" autofocus required />
                 <span id="invalidEmailMsg" style="color: red;display: none;">Please enter valid email</span>
             </div>
             <div class="modal-footer" id="modalfooter">
@@ -108,51 +108,50 @@
         
             <div class="modal-body regSuccess" id="respon" style="display:none;height: 8em">
             	<p id="theresponse" style="margin-left:10px"></p>
-            	<p style="color:green;margin-left:10px" id="sendagainp">You are Successfully registered. Click cancel and login.</p>
+            	<p style="color:green;margin-left:10px" id="sendagainp">You are Successfully registered. Click close and login.</p>
             	<button type="button" name="cancel" class="btn btn-default" style="width: 21.5%;float: right;" onclick="closeRegModal()">Close</button>
             </div>
             <div class="modal-body regForm" id="regForm" style="display:block;">
                 <div class="alert alert-warning">
-                <form action="Registering.jsp" method="POST" name="register" id="register" class="form-horizontal">
+                <form action="" method="POST" name="register" id="register" class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label col-sm-4">Full Name</label>
                     <div class="col-sm-7">
-                        <input type="text" id="fname" name="fname" class="form-control"/>
+                        <input type="text" id="fname" name="fname" class="form-control" required maxlength="30" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">Email</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="email" name="email"/>
+                        <input type="text" class="form-control" id="email" name="email" required />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">Phone</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="phone" name="phone"/>
+                        <input type="text" class="form-control" id="phone" name="phone" required />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">New Password</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" id="crtpwd" name="crtpwd"/>
+                        <input type="password" class="form-control col-sm-12" id="crtpwd" name="crtpwd" required onkeyup="CheckPasswordStrength(this.value)" />
+                        <progress max="100" value="0" id="pwdMeter" class="col-sm-5" style="display: none;"></progress>
+                        <span id="password_strength" style="display: inline-block;padding: 0.1em;" class="col-sm-7">&nbsp;Password Strength</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">Confirm Password</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" id="crmpwd" name="crmpwd"/>
+                        <input type="password" class="form-control" id="crmpwd" name="crmpwd" required />
                     </div>
                 </div>
-                <input type="hidden" name="AfterSave" value="details.jsp"/>
-                <input type="hidden" name="view" value="basic"/>
-                
             </form>
             <div class="form-group">
             		<label class="control-label col-sm-4"></label>
                     <div class="col-sm-7">
-                        <button type="button" name="save" id="saveBtn" class="btn btn-success" style="width:41.5%;" onclick="validate();">Submit</button>
-                    	<button type="button" name="cancel" class="btn btn-default" style="width:41.5%;" onClick="closeRegModal()">Cancel</button>
+                        <button type="button" name="save" id="saveBtn" class="btn btn-success" style="width:49%;" onclick="validate();">Submit</button>
+                    	<button type="button" name="cancel" class="btn btn-default" style="width:49%;" onClick="closeRegModal()">Cancel</button>
                     </div>
              </div>
            </div>
@@ -164,5 +163,14 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$("#saveBtn").on("click", function() {
+	  if (!$("#register")[0].checkValidity()) {
+	    // If the form is invalid, submit it. The form won't actually submit;
+	    // this will just cause the browser to display the native HTML5 error messages.
+	    $("#register").find("#saveBtn").click();
+	  }
+	});
+</script>
 </body>
 </html>

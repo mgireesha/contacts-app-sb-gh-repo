@@ -96,7 +96,7 @@ public class AccountSettingsController {
 		if(isRsNext)
 			status = "An Email with password reset instructions has been successfully sent to your registered email.";
 		else
-			status = "The email you have entered is not registered.";
+			status = "NO_REG";
 		return status;
 	}
 	

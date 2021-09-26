@@ -104,27 +104,6 @@ alert("Please Enter Valid Email Format");
 return false;
 }
 }
-//function validateregemail1()
-//{
-// var email=document.getElementById("regEmail1").value;
-// var email1 = /^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/;
-//
-// if(email.match(email1))
-// {
-// var theForm=document.refEmailForm1;
-// theForm.registeredEmail1.value=email;
-// theForm.actionItm1.value="validEmail1";
-// alert(theForm.registeredEmail1.value);
-// alert(theForm.actionItm1.value);
-// theForm.submit();
-// }
-// else
-// {
-// alert("Please Enter Valid Email Format");
-// return false;
-// }
-//}
-// call onload or in script segment below form
 function attachCheckboxHandlers() {
 // get reference to element containing toppings checkboxes
 var el = document.getElementById('toppings');

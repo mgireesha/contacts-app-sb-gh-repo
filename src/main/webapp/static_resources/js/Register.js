@@ -10,28 +10,38 @@
 *@Author Gireesh M T*
 */
 function validate() {
-	if (matchPwd()) {
-		if (allfields()) {
-			if (validateemail()) {
-				if (phonenumber()) {
-					RegisterUser();
+	document.getElementById("fname").reportValidity();
+	if (allfields()) {
+		if (passwordStrength()) {
+			if (matchPwd()) {
+				if (validateemail()) {
+					if (phonenumber()) {
+						RegisterUser();
+					}
 				}
 			}
 		}
 	}
 }
 function allfields() {
-	var fname = document.register.fname.value;
-	var email = document.register.email.value;
-	var phone = document.register.phone.value;
-	var crtpwd = document.register.crtpwd.value;
-	var crmpwd = document.register.crmpwd.value;
-	if (fname && email && phone && crtpwd && crmpwd != " ") {
+	var fname = document.register.fname;
+	var email = document.register.email;
+	var crtpwd = document.register.crtpwd;
+	var crmpwd = document.register.crmpwd;
+	if (!fname.reportValidity()) {
+		//fname.setCustomValidity("Please fill in the full name.");
+		fname.reportValidity();
+	} else if (!email.reportValidity()) {
+		//email.setCustomValidity("Please fill in a valid email id.");
+		email.reportValidity();
+	} else if (!crtpwd.reportValidity()) {
+		//crtpwd.setCustomValidity("Please provide a strong new password");
+		crtpwd.reportValidity();
+	} else if (!crmpwd.reportValidity()) {
+		//crmpwd.setCustomValidity("Please retype the password.");
+		crmpwd.reportValidity();
+	} else {
 		return true;
-	}
-	else {
-		alert("All Fields are Mandatory");
-		return false;
 	}
 }
 function matchPwd() {
@@ -72,7 +82,6 @@ $(document).ready(function() {
 
 function RegisterUser() {
 	var name = $("#fname").val();
-	var gender = $('input[name="radio"]:checked').val();
 	var email = $("#email").val();
 	var phone = $("#phone").val();
 	var newPwd = $("#crtpwd").val();
@@ -91,4 +100,80 @@ function RegisterUser() {
 		},
 		error: function(error) { }
 	});
+}
+function passwordStrength() {
+	var pStrength = $("#pwdMeter").val();
+	if(pStrength<100){
+		alert("Provided password is weak. Please provide a strong password");
+		return false;
+	}else{
+		return true;
+	}
+}
+function CheckPasswordStrength(password) {
+	var password_strength = document.getElementById("password_strength");
+	var pwdMeterV = 0;
+	//if textBox is empty
+	if (password.length == 0) {
+		password_strength.innerHTML = "&nbsp;Password Strength";
+		$("#pwdMeter").val(0);
+		return;
+	}
+
+	//Regular Expressions
+	var regex = new Array();
+	regex.push("[A-Z]"); //For Uppercase Alphabet
+	regex.push("[a-z]"); //For Lowercase Alphabet
+	regex.push("[0-9]"); //For Numeric Digits
+	regex.push("[$@$!%*#?&]"); //For Special Characters
+
+	var passed = 0;
+
+	//Validation for each Regular Expression
+	for (var i = 0; i < regex.length; i++) {
+		if ((new RegExp(regex[i])).test(password)) {
+			passed++;
+		}
+	}
+
+	//Validation for Length of Password
+	if (passed > 2 && password.length > 8) {
+		passed++;
+	}
+
+	//Display of Status
+	var color = "";
+	var passwordStrength = "";
+	switch (passed) {
+		case 0:
+			break;
+		case 1:
+			passwordStrength = "Password is Weak.";
+			color = "Red";
+			pwdMeterV = 20;
+			break;
+		case 2:
+			passwordStrength = "Password is Good.";
+			color = "darkorange";
+			pwdMeterV = 40;
+			break;
+		case 3:
+			passwordStrength = "Password is Good.";
+			color = "darkorange";
+			pwdMeterV = 60;
+			break;
+		case 4:
+			passwordStrength = "Password is Strong.";
+			color = "Green";
+			pwdMeterV = 80;
+			break;
+		case 5:
+			passwordStrength = "Password is Very Strong.";
+			color = "darkgreen";
+			pwdMeterV = 100;
+			break;
+	}
+	password_strength.innerHTML = passwordStrength;
+	password_strength.style.color = color;
+	$("#pwdMeter").val(pwdMeterV);
 }
