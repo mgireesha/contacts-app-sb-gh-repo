@@ -10,7 +10,7 @@
 *@Author Gireesh M T*
 */
 function validate() {
-	//document.getElementById("fname").reportValidity();
+	//gidocument.getElementById("fname").reportValidity();
 	if (allfields()) {
 		if (passwordStrength()) {
 			if (matchPwd()) {
