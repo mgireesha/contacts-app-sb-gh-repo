@@ -50,7 +50,7 @@
       		<div class="col-sm-3" style="padding: 0.5em"><span class="show-reset">Forgot password ? <a href="#">Click here to reset</a></span></div>
       		<div class="col-sm-3" style="padding: 0.5em"><span onclick="showRegModal()" >New User ? <a href="#">Register here</a></span></div>
       		<div class="col-sm-2" style="padding: 0.5em"><span class=""><a href="#">About APP</a></span></div>
-      		<div class="col-sm-4" style="padding: 0.5em"><span onclick="" ><a href="#">Contact us @ Contactsapppwdreset@gmail.com</a></span></div>
+      		<div class="col-sm-4" style="padding: 0.5em"><span onclick="" ><a href="#" style="text-decoration: none;">Write to us @ Contactsapppwdreset@gmail.com</a></span></div>
       </div>
     </div>
   </form>
