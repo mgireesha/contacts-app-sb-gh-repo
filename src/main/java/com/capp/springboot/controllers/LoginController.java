@@ -66,6 +66,7 @@ public class LoginController {
 			}
             request.getSession().setAttribute("navbar", navbar);
 			mv.setViewName("Home");
+			mv.addObject("dark", "showDarkTheme");
 			((ClassPathXmlApplicationContext) ctx).close();
 		}else {
 			mv.setViewName("Login");
@@ -82,6 +83,7 @@ public class LoginController {
 			mv.addObject("View", request.getSession().getAttribute("View"));
 			mv.addObject("TableName", request.getSession().getAttribute("TableName"));
 			mv.addObject("errorMsg", "Success");
+			mv.addObject("dark", "showDarkTheme");
 			mv.setViewName("Home");
 		}else {
 			mv.addObject("errorMsg", "Session expired, login again");

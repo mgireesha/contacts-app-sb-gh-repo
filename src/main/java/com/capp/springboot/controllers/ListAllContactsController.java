@@ -10,6 +10,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.capp.springboot.object.Contact;
@@ -33,6 +35,7 @@ public class ListAllContactsController {
 			mv.addObject("View",view);
 			mv.addObject("showSearchbar", "true");
 			mv.addObject("actionDropDown", "true");
+			//mv.addObject("dark", "showDarkTheme");
 			mv.setViewName("ListAllContacts");
 			((ClassPathXmlApplicationContext) ctx).close();
 		}else {
@@ -63,5 +66,4 @@ public class ListAllContactsController {
 		}
 		return mv;
 	}
-
 }

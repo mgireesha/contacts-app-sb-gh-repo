@@ -18,15 +18,16 @@
 <link href="static_resources/css/Home.css" rel="stylesheet" />
 <link href="static_resources/bootstrap_3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body class="themeContent">
 <%@ include file="Header.txt" %>
 <c:choose>
 	<c:when test="${errorMsg eq 'Success'}">
 	<div class="container-fluid">
-		<div class="col-sm-7 well" style="height:100%;border-radius:5px;">
+		<div class="col-sm-7 well themeContent" style="height:100%;border-radius:5px;">
+			<h4 style="color: blue;"><i class="themetext"><b>Actions:</b></i></h4>
 			<div style="padding-top:1.0em;margin-left:5%;margin-right:5%;">
-        	<button class="btn btn-info home-btn button" onclick="window.location.replace('listAll')">List All Contacts</button>
-        	<button class="btn btn-info home-btn button" onclick="window.location.replace('AddUpdate')">Add a New Contact</button>
+        	<button class="btn btn-info home-btn button" onclick="window.location.replace('listAll')" style="margin-top:1.0em">List All Contacts</button>
+        	<button class="btn btn-info home-btn button" onclick="window.location.replace('AddUpdate')" style="margin-top:1.0em">Add a New Contact</button>
         	<button class="btn btn-warning home-btn button" onclick="importContactsDiv()" style="margin-top:1.0em">Import Contacts</button>
         	<button class="btn btn-warning home-btn button" onclick="exportContactsDiv()" style="margin-top:1.0em">Export Contacts</button>    
     	</div>

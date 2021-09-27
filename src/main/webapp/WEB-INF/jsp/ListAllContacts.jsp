@@ -20,7 +20,7 @@
 <script type="text/javascript" src="static_resources/js/jquery-ui/jquery-ui.js"></script>
 <link href="static_resources/bootstrap_3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body class="themeContent">
 <%@ include file="Header.txt" %>
 	<div class="container-fluid" style="background-image:url()">
 		<button onclick="topFunction()" class="btn btn-primary" id="myBtn" title="Go to top">Top</button>
@@ -78,9 +78,9 @@
 			</div>
 		</c:if>
 		<c:if test="${View eq 'thumbnail'}">
-			<div class="row"
-				style="margin-left: 0.1%; position: fixed; z-index: 1000; width: 64%; margin-top: -0.3em">
-				<div class="col-sm-5 alert alert-danger" style="">
+			<div class="listAlBoard row"
+				style="">
+				<div class="col-sm-5 alert alert-danger">
 					<i><b>Select All</b></i>&nbsp&nbsp<input type="checkbox"
 						onclick="selectAll(this);" /> <span>&nbsp;&nbsp;|&nbsp;&nbsp;
 					</span> <a onclick="quickAddModal()"
@@ -91,8 +91,8 @@
 						id="countN"> = ${cList.size()}</span>
 				</div>
 			</div>
-			<div class="row" id="thumbnailView"
-				style="margin-top: 2.0em; width: 100%;">
+			<div class="thumbnailRow row" id="thumbnailView"
+				style="width: 100%;">
 				<%File file1 = null; %>
 				<c:forEach items="${cList}" var="ct">
 					<div class="col-sm-3" id='${ct.getId()}thumnailDiv'>

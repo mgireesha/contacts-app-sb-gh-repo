@@ -134,4 +134,24 @@ public class UpdateServiceImpl implements UpdateService {
         }
 	}
 
+	@Override
+	public int updateContatname(String tableName, String newName, String cId) {
+		PreparedStatement ps = null;
+		Connection con = null;
+		int intStat = 0;
+		String updatename = "UPDATE "+tableName+" SET NAME = ? WHERE ID = ?";
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(updatename);
+			ps.setString(1, newName);
+			ps.setString(2, cId);
+			intStat = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return intStat;
+	}
+
 }

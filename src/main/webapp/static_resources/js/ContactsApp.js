@@ -431,13 +431,13 @@ function togleDarkTheme(){
 	if(currentTheme == "dark"){
 		$("#currentTheme").val("light");
 		$(".control-label,.containe,.themetext").removeClass("darkthemetextColor");
-		$(".mailHtml, .container-fluid").removeClass("darkThemeClass");
+		$(".themeContent").removeClass("darkThemeClass");
 		$("#darkThemeButton").show();
 		$("#lightThemeButton").hide();
 	}else{
 		$("#currentTheme").val("dark");
 		$(".control-label,.containe,.themetext").addClass("darkthemetextColor");
-		$(".mailHtml, .container-fluid").addClass("darkThemeClass");
+		$(".themeContent").addClass("darkThemeClass");
 		$("#darkThemeButton").hide();
 		$("#lightThemeButton").show();
 	}

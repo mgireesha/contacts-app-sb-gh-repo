@@ -1,3 +1,4 @@
+	<input type="hidden" name="currentTheme" id="currentTheme" />
 	</div> <%-- closed div which opened in header.txt --%>
 	<div class="navbar navbar-fixed-bottom" style="background-color:<%if(!"".equals(navbar) && null!=navbar){%><%=navbar%><%}else{%>rgb(69, 29, 93)<%}%>;">
 		<div class="">

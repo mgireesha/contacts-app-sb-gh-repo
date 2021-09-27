@@ -4,18 +4,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
         <title>Contacts App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="static_resources/bootstrap_3.3.7/dist/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="static_resources/bootstrap_3.3.7/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static_resources/bootstrap_3.3.7/dist/css/bootstrap.min.css"> -->
         <link href="static_resources/css/Home.css" rel="stylesheet" />
         <script src="static_resources/js/colourPicker.js"></script>
     </head>
     <body>
     
-    <div id="colourPicker" class="modal fade" data-backdrop="static" style="top: 15%;left:15%;margin-left:15%">
+    <div id="colourPicker" class="colourPickerDiv modal fade" data-backdrop="static" style="">
         <div class="modal-dialog" style="width: 100%">
-            <div class="modal-content"  style="width:70%;">
-                <div class="modal-header" style="">
+            <div class="colourPickerContent modal-content">
+                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" style="color:#428bca"><i><b>Colour Selection</b></i></h4>
                 </div>
@@ -30,17 +30,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 colorPadding">
                     <div id="red" style="height:3em;background-color:red;text-align: center;">
                         <label style="margin-top: 1em">Red: </label><label id="valRed" style="margin-top: 1em" >122</label>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 colorPadding">
                     <div id="green" style="height:3em;background-color:green;text-align: center;">
                         <label style="margin-top: 1em">Green: </label><label id="valGreen" style="margin-top: 1em">122</label>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 colorPadding">
                     <div id="blue" style="height:3em;background-color:blue;text-align: center;">
                         <label style="margin-top: 1em">Blue: </label><label id="valBlue" style="margin-top: 1em">122</label>
                     </div>
@@ -48,15 +48,15 @@
             </div>
             
             <div class="row" style="margin-top:0.5em;margin-bottom: 0.5em" >
-                <div class="col-sm-4">
+                <div class="col-sm-4 colorPadding">
                     <input oninput="changeRed(this.value)" onchange="changeRed(this.value)" type="range"
                                id="slideRed" name="slideRed" min="0" max="255"/>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 colorPadding">
                     <input oninput="changeGreen(this.value)" onchange="changeGreen(this.value)" type="range"
                                id="slideGreen" name="slideGreen" min="0" max="255"/>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 colorPadding">
                     <input oninput="changeBlue(this.value)" onchange="changeBlue(this.value)" type="range"
                                id="slideBlue" name="slideBlue" min="0" max="255"/>
                 </div>

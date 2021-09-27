@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.capp.springboot.object.Contact;
 import com.capp.springboot.services.ListContactService;
 import com.capp.springboot.services.SaveContactService;
+import com.capp.springboot.services.UpdateService;
 import com.capp.springboot.util.CApUtil;
 
 @Controller
@@ -94,6 +95,19 @@ public class AddUpdateController {
 			save.saveContacts(cList, tableName);
 		}
 	return save.getMaXContactid(tableName);
+	}
+	
+	@RequestMapping("/rename-contact")
+	public @ResponseBody String updaeName(HttpServletRequest request,@RequestParam String newName,@RequestParam String cId){
+		String status = "Failed";
+		int intStat = 0;
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("Beans.xml");
+		UpdateService updateSrc = (UpdateService)ctx.getBean("updateS");
+		String tableName = (String) request.getSession().getAttribute("tableName");
+		intStat = updateSrc.updateContatname(tableName,newName,cId);
+		if(intStat>0)
+			status = "Success";
+		return status;
 	}
 	
 }

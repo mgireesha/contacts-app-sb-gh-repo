@@ -84,3 +84,28 @@
 	color: beige;
 }
 
+@media screen and (max-width: 550px) {
+  	.colourPickerDiv{
+		top: 10% !important;
+		left:0 !important;
+		margin-left:0 !important;
+	}
+	
+	.colorPadding{
+		padding: 0.2em !important;
+	}
+	
+	.colourPickerContent{
+		width:95% !important;
+	}
+}
+
+.colourPickerDiv{
+	top: 15%;
+	left:15%;
+	margin-left:15%;
+}
+
+.colourPickerContent{
+	width:70%;
+}

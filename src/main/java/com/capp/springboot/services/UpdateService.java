@@ -10,4 +10,7 @@ public interface UpdateService {
 
 	void updateDp(byte[] fileContent, String id, String tableName);
 
+	int updateContatname(String tableName, String newName, String cId);
+
+
 }

@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html class="mailHtml">
+<html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Contacts App</title>
@@ -14,12 +14,12 @@
 <script type="text/javascript" src="static_resources/js/ContactsApp.js"></script>
 <script type="text/javascript" src="static_resources/js/Details.js"></script>
 <link href="static_resources/css/Details.css" rel="stylesheet" />
-<link href="static_resources/css/accountSettings.css" rel="stylesheet" />
 <link href="static_resources/bootstrap_3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="static_resources/css/accountSettings.css" rel="stylesheet" />
 </head>
-<body>
+<body class="themeContent">
 <%@ include file="Header.txt"%>
-<div class="container-fluid well">
+<div class="container-fluid well themeContent">
 <div class="col-sm-7" style="margin-top:2.5em">
     <form action="UpdatePwd" method="POST" name="updatePwd" id="updatePwd" class="form-horizontal">
         <div class="alert alert-danger" style="height:50px;width:80%">
@@ -132,7 +132,6 @@
         </div>
     </div>
 </div>
-	<input type="hidden" name="currentTheme" id="currentTheme" />
 	<input type="hidden" name="TableNameFromDb" id="TableNameFromDb" value="${sessionScope.tableName}" />
     <%@ include file="colourPicker.html" %>
      <%@ include file="Footer.txt" %>

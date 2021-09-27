@@ -24,7 +24,7 @@ public class AccountSettingsController {
 	public ModelAndView goToAccountsSettings(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		if(null!=request.getSession().getAttribute("Name")) {
-			mv.addObject("view", "AccountSettings");
+			mv.addObject("dark", "showDarkTheme");
 			mv.setViewName("AccountSettings");
 		}else {
 			mv.addObject("errorMsg", "Session expired, login again");
