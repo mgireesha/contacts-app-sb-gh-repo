@@ -103,7 +103,7 @@ function RegisterUser() {
 }
 function passwordStrength() {
 	var pStrength = $("#pwdMeter").val();
-	if(pStrength<100){
+	if(pStrength<80){
 		alert("Provided password is weak. Please provide a strong password");
 		return false;
 	}else{

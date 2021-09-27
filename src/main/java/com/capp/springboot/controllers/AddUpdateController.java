@@ -53,6 +53,7 @@ public class AddUpdateController {
 			mv.addObject("action", "new");
 			mv.addObject("action1",true);
 		}
+		mv.addObject("dark", "showDarkTheme");
 		mv.setViewName("AddUpdate");
 		}else {
 			mv.addObject("errorMsg", "Session expired, login again");

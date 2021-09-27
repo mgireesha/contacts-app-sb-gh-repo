@@ -76,14 +76,6 @@
 	background: white;
 }
 
-.darkThemeClass{
-	background-color: #333333 !important;
-}
-
-.darkthemetextColor {
-	color: beige;
-}
-
 @media screen and (max-width: 550px) {
   	.colourPickerDiv{
 		top: 10% !important;

@@ -16,9 +16,9 @@
 <link rel="stylesheet" href="static_resources/choosen/chosen.css">
 <link href="static_resources/bootstrap_3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body class="themeContent">
 <%@ include file="Header.txt" %>
-<div class="container" style="margin-top: 2em">
+<div class="container" style="">
 	<c:choose>
 		<c:when test="${empty nothing}">
 			<div class="alert alert-info col-sm-9" >

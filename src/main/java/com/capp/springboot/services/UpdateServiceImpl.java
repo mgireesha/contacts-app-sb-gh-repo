@@ -20,14 +20,15 @@ public class UpdateServiceImpl implements UpdateService {
 		int updateSt = 0;
 		String status = "WRONG_PASSWORD";
 		String checkCuPwd = "";
+		tableName = tableName.substring("public.".length(), tableName.length());
 		if("yes".equalsIgnoreCase(isFromForgoPwdMail))
 			checkCuPwd = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE USERNAME='"+registeredEmail+"' AND OTP='"+currentPwd+"';";
 		else
-			checkCuPwd = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE TABLENAME='"+tableName.substring("public.".length(), tableName.length())+"' AND PASSWORD='"+currentPwd+"';";
+			checkCuPwd = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE TABLENAME='"+tableName+"' AND PASSWORD='"+currentPwd+"';";
 		try {
 			con = DbUtil.getConnection();
 			stmt = con.createStatement();
-			System.out.println(checkCuPwd);
+			//System.out.println(checkCuPwd);
 			rs = stmt.executeQuery(checkCuPwd);
 			while(rs.next()) {
 				if("yes".equalsIgnoreCase(isFromForgoPwdMail))

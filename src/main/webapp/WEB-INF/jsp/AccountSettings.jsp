@@ -21,7 +21,7 @@
 <%@ include file="Header.txt"%>
 <div class="container-fluid well themeContent">
 <div class="col-sm-7" style="margin-top:2.5em">
-    <form action="UpdatePwd" method="POST" name="updatePwd" id="updatePwd" class="form-horizontal">
+    <form action="UpdatePwd" method="POST" name="updatePwd" id="updatePwd" class="form-horizontal themetext ">
         <div class="alert alert-danger" style="height:50px;width:80%">
             <p class="text-success"><strong>Update Password:</strong></p>
         </div>
@@ -30,14 +30,25 @@
         <div class="col-sm-6" >
              <input type="password" id="cupwd" name="cupwd" class="form-control" style="" autofocus="autofocus" />  
         </div>
-        <div class="col-sm-3"><p id="invalidpwd" style="color:red;margin-left:1em;margin-top:0.3em;display:none">Invalid Password</p></div>
+        <div class="col-sm-3" style="display: none;" id="cPwdLoading">
+			<img src="static_resources/images/YGgI.gif" alt="Loading." style="height: 2.2em;width: 2.2em;">
+		</div>
+        <div class="col-sm-3">
+        	<p id="invalidpwd" style="color:red;margin-left:1em;margin-top:0.3em;display:none">Invalid Password</p>
+        </div>
+        <div class="col-sm-3">
+        	<p id="text-alertNullCuPwd" style="color:red;margin-left:0.0em;display:none">Field cannot be empty</p>
+        </div>
     </div>
     <div class="form-group" style="margin-top:2em;">
             <label class="control-label col-sm-3">New Password</label>
         <div class="col-sm-6">
-            <input type="password" class="form-control" id="nepwd" name="nepwd" style="" />
+            <input type="password" class="form-control" id="nepwd" name="nepwd" onkeyup="CheckPasswordStrength(this.value)" />
+            <progress max="100" value="0" id="pwdMeter" class="col-sm-5" style="display: none;"></progress>
+            <span id="password_strength" style="display: inline-block;padding: 0.1em;" class="col-sm-7">Password Strength</span>
         </div>
-        <div class="col-sm-3"><p id="text-alertNull1" style="color:red;margin-left:0.0em;display:none">Field cannot be empty</p>
+        <div class="col-sm-3">
+        	<p id="text-alertNull1" style="color:red;margin-left:0.0em;display:none">Field cannot be empty</p>
         </div>
     </div>
     <div class="form-group" style="margin-top:2em;">
@@ -53,7 +64,7 @@
         <div class="col-sm-3">
         </div>
         <div class="col-sm-7">
-            <input type="checkbox" class="" onclick="myFunction()">Show Password
+            <input type="checkbox" class="" onclick="myFunction()">&nbsp;Show Password
         </div>
     </div>
     <div class="form-group" style="margin-top:2em;">
@@ -81,7 +92,7 @@
     <div class="alert alert-danger" style="height:50px;width:100%">
         <p class="text-success"><strong>Update View:</strong></p>
     </div>
-    <div style="margin-top:2.0em">                          
+    <div style="margin-top:2.0em" class="themetext">                          
         <label class="containe">Basic
             <input type="radio" ${sessionScope.View eq 'basic' ? 'checked' : ""} name="radio" value="basic">
             <span class="checkmark"></span>
@@ -127,7 +138,7 @@
             <div class="modal-footer">
             <button class="btn btn-primary" onclick="window.location.replace('listAll')" style="display:none" id="listContBtn">list Contacts</button>
             <button class="btn btn-danger" id="daButton" onclick="deleteAccount('${sessionScope.TableName}')" style="display:none">Delete</button>
-            <button class="btn btn-default" id="cancelBtn" aria-label="Close" >Cancel</button>
+            <button class="btn btn-default" id="cancelBtn" aria-label="Close" onClick="closeAccountSettingsUpdateModal()" >Close</button>
             </div>
         </div>
     </div>

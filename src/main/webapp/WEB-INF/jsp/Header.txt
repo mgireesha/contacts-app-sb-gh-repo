@@ -1,4 +1,5 @@
 <script type="text/javascript" src="static_resources/js/Header.js"></script>
+<link rel="stylesheet" href="static_resources/css/Header.css">
 <%	String navbar = (String)request.getSession().getAttribute("navbar");
 	int addnew =1;
 	int actionDropDown = 1;

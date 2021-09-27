@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contacts App</title>
+<title>Contacts App - Home</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="static_resources/bootstrap_3.3.7/dist/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="static_resources/js/jquery-ui/jquery-ui.js" ></script>

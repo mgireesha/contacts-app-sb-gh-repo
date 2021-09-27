@@ -30,7 +30,7 @@ public static void main(String[] args) {
 	Test1 test = new Test1();
 	//test.addColumn();
 	//test.getColours();
-	//test.getUsers();
+	test.getUsers();
 	//test.createUser();
 	/*
 	 * test.createCredsTable(); test.createColourTable(); test.createUser();
