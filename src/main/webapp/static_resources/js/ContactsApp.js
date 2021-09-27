@@ -188,7 +188,7 @@ function updatePassword() {
 				}
 				if (xhttp.status == 200) {
 					$('#cupwd,#copwd,#nepwd').val('');
-					$('#password_strength').css('color','black');
+					$('#password_strength').css('color','');
 					$('#password_strength').html('&nbsp;Password Strength');
 					document.getElementById("text-success").style.display = "block";
 					document.getElementById("view-success").style.display = "none";
@@ -399,7 +399,8 @@ function CheckPasswordStrength(password) {
 	var pwdMeterV = 0;
 	//if textBox is empty
 	if (password.length == 0) {
-		password_strength.innerHTML = "&nbsp;Password Strength";
+		password_strength.innerHTML = "Password Strength";
+		password_strength.style.color = '';
 		$("#pwdMeter").val(0);
 		return;
 	}
@@ -454,7 +455,7 @@ function CheckPasswordStrength(password) {
 			break;
 		case 5:
 			passwordStrength = "Password is Very Strong.";
-			color = "darkgreen";
+			color = "#27a727";
 			pwdMeterV = 100;
 			break;
 	}

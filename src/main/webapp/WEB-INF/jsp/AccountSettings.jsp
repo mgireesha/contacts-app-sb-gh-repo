@@ -45,7 +45,7 @@
         <div class="col-sm-6">
             <input type="password" class="form-control" id="nepwd" name="nepwd" onkeyup="CheckPasswordStrength(this.value)" />
             <progress max="100" value="0" id="pwdMeter" class="col-sm-5" style="display: none;"></progress>
-            <span id="password_strength" style="display: inline-block;padding: 0.1em;" class="col-sm-7">Password Strength</span>
+            <b><span id="password_strength" style="display: inline-block;padding: 0.1em;" class="col-sm-7">Password Strength</span></b>
         </div>
         <div class="col-sm-3">
         	<p id="text-alertNull1" style="color:red;margin-left:0.0em;display:none">Field cannot be empty</p>
