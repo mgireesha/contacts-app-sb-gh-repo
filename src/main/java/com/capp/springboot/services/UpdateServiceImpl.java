@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
 
 import com.capp.springboot.util.DaoException;
 import com.capp.springboot.util.DbUtil;
@@ -26,6 +27,7 @@ public class UpdateServiceImpl implements UpdateService {
 		else
 			checkCuPwd = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE TABLENAME='"+tableName+"' AND PASSWORD='"+currentPwd+"';";
 		try {
+			TimeUnit.SECONDS.sleep(3);
 			con = DbUtil.getConnection();
 			stmt = con.createStatement();
 			//System.out.println(checkCuPwd);
@@ -42,7 +44,9 @@ public class UpdateServiceImpl implements UpdateService {
 			}
 		} catch (DaoException e) {
 			e.printStackTrace();
-		}catch (SQLException e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
