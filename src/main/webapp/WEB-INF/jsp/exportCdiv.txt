@@ -16,7 +16,7 @@
 											onclick="submitImportExportForm('2','csv')"
 											style="height: 4.2em; width: 5.2em; display: inline; margin-left: 1.0em"
 											class="btn btn-success button"></td>
-										<td><img src="static_resources/images/Excel.png" id="excel"
+										<td><img src="static_resources/images/Excel1.png" id="excel"
 											alt="Excel"
 											title="click here to export contacts as .xls file.."
 											onclick="submitImportExportForm('2','xls')"

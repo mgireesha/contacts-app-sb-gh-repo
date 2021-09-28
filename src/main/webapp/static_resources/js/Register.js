@@ -64,7 +64,7 @@ function phonenumber() {
 }
 function validateemail() {
 	var email = document.register.email.value;
-	var email1 = /^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/;
+	var email1 = /^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,5})+$/;
 	if (email.match(email1)) {
 		return true;
 	}

@@ -91,7 +91,7 @@ public class LoginController {
 			mv.addObject("dark", "showDarkTheme");
 			mv.setViewName("Home");
 		}else {
-			mv.addObject("errorMsg", "Session expired, login again");
+			//mv.addObject("errorMsg", "Session expired, login again");
 			mv.setViewName("Login");
 		}
 		
