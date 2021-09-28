@@ -29,6 +29,11 @@ public class LoginController {
 		return new ModelAndView("Login");
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView gotToLogin() {
+		return new ModelAndView("Login");
+	}
+	
 	@RequestMapping(value="/login" , method = RequestMethod.POST)
 	public ModelAndView validateLogin(HttpServletRequest request) {
 		String unserName = request.getParameter("uname");

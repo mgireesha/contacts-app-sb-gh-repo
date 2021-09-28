@@ -75,7 +75,8 @@
             <div class="modal-body respon" id="respon" style="display:none;">
             	<p id="theresponse" style="margin-left:10px"></p>
             	<!-- <p style="color:red;margin-left:10px" id="sendagainp">Didn't recieve your password, click below to send again</p> -->
-            	<button class="btn btn-warning btn-xs invdiv pwdreset" id="sendagain"  style="margin-left:10px" onClick="sendPwdRs()" title="Didn't recieve your password, click this button to send again">Send again</button><button  class="btn btn-primary btn-xs show-reset1" id="reenter" style="display:none;margin-left:10px">Re-Enter Eamial</button>
+            	<button class="btn btn-warning btn-xs invdiv pwdreset" id="sendagain"  style="margin-left:10px" onClick="sendPwdRs()" title="Didn't recieve your password, click this button to send again">Send again</button>
+            	<button  class="btn btn-primary btn-xs show-reset1" id="reenter" style="display:none;margin-left:10px">Re-Enter Email</button>
             </div>
             <div class="modal-body respons" id="respons" style="display:block;">
                 <h5>Please Enter Your Registered Email to Initiate Password Reset</h5>

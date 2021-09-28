@@ -304,7 +304,7 @@ $(document).ready(function() {
 });
 
 function closeAccountSettingsUpdateModal(){
-	$('#delete-danger,#goodBye,#text-success,#view-success,#listContBtn,#daButton').hide();
+	$('#delete-danger,#goodBye,#text-success,#view-success,#listContBtn,#daButton,#delete-danger-confirm').hide();
 	$('#accountSettingsUpdateModal').modal('hide');
 	$("#delACCmPwd").val("");
 }

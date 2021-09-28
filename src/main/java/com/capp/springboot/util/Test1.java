@@ -36,7 +36,8 @@ public static void main(String[] args) {
 	 * test.createCredsTable(); test.createColourTable(); test.createUser();
 	 */
 	test.getTables("public");
-	test.insertIntoCities();
+	//test.insertIntoCities();
+	//test.truncateTable();
 }
 public void getTables(String schema) {
 	Connection con = null;
@@ -249,6 +250,25 @@ public void createStatesTable() {
 		else
 			System.out.println("Connection failed");
 		String createColursTable = "CREATE TABLE PUBLIC.STATES(ID INTEGER NOT NULL,NAME VARCHAR(50) NOT NULL,COUNTRY_ID INTEGER NOT NULL)";
+		stmt = con.createStatement();
+		stmt.executeUpdate(createColursTable);
+		System.out.println("Table CONTACTS_APP_COLOURS created successfully");
+	} catch (Exception e) {
+		System.out.println("Failed to create table");
+		e.printStackTrace();
+	}
+}
+
+public void truncateTable() {
+	Connection con = null;
+	Statement stmt = null;
+	try {
+		con = DbUtil.getConnection("cloudPostgress");
+		if(null!=con)
+			System.out.println("Suucessfully connected to postgres");
+		else
+			System.out.println("Connection failed");
+		String createColursTable = "TRUNCATE TABLE PUBLIC.CITIES";
 		stmt = con.createStatement();
 		stmt.executeUpdate(createColursTable);
 		System.out.println("Table CONTACTS_APP_COLOURS created successfully");

@@ -39,28 +39,19 @@
                 	<div class="form-group">
                     	<label class="control-label col-sm-3">Name</label>
                     	<div class="col-sm-6">
-                        	<input type="text" id="name" name="name" value="${contact.getName()}" class="form-control" />
+                        	<input type="text" id="name" name="name" value="${contact.getName()}" class="form-control" required="required" maxlength="30" />
                     	</div>
                 	</div>
                 	<div class="form-group">
-                    	<label class="control-label col-sm-3">Gender</label>
+                    	<label class="control-label col-sm-3">Phone</label>
                     	<div class="col-sm-6">
-                        	<div class="radio ">
-                            	<label><input type="radio" id="Male" name="radio" value="Male" ${contact.getGender()=="Male" ? 'checked' : ""} />Male</label>
-                            	<label><input type="radio" id="Female" name="radio" value="Female" ${contact.getGender()=="Female" ? 'checked' : ""}  />Female</label>
-                        	</div>
+                        	<input type="text" class="form-control" id="phone" name="phone" value="${contact.getPhone()}" required="required" />
                     	</div>
                 	</div>
                 	<div class="form-group">
                     	<label class="control-label col-sm-3">Email</label>
                     	<div class="col-sm-6">
                         	<input type="text" class="form-control" id="email" name="email" value="${contact.getEmail()}" />
-                    	</div>
-                	</div>
-                	<div class="form-group">
-                    	<label class="control-label col-sm-3">Phone</label>
-                    	<div class="col-sm-6">
-                        	<input type="text" class="form-control" id="phone" name="phone" value="${contact.getPhone()}" />
                     	</div>
                 	</div>
                 	<div class="form-group">
@@ -97,24 +88,33 @@
                         			<option value="${contact.getCity()}">${contact.getCity()}</option>
                         		</c:when>
                         		<c:otherwise>
-                        			<option >Select your city</option>
+                        			<option value="">Select your city</option>
                         		</c:otherwise>
                         	</c:choose>
                         </select>
                     </div>
                     </div>
                 </div>
-                
+                <div class="form-group">
+                    	<label class="control-label col-sm-3">Gender</label>
+                    	<div class="col-sm-6">
+                        	<div class="radio ">
+                            	<label><input type="radio" id="Male" name="radio" value="Male" ${contact.getGender()=="Male" ? 'checked' : ""} />Male</label>
+                            	<label><input type="radio" id="Female" name="radio" value="Female" ${contact.getGender()=="Female" ? 'checked' : ""}  />Female</label>
+                        	</div>
+                    	</div>
+                </div>
             </form>
             
             <div class=" col-sm-3"></div>
             <div class="col-sm-7" style="">
-                <button type="button" name="save" class="btn btn-success" style="width:41.5%" onclick="validate();">Save</button>                 
                 <button type="button" name="cancel" class="btn btn-default" style="width:41.5%" onclick="window.location.replace('<%=request.getHeader("Referer")%>')">Go back</button>
+                <button type="button" name="save" class="btn btn-success" style="width:41.5%" onclick="validate();">Save</button>
+                <img src="static_resources/images/YGgI.gif" alt="Loading." id="saveCLoading" style="display: none;">
+                <img src="static_resources/images/tick.png" alt="Loading." id="saveCTick" style="display: none;">
                 <input type="hidden" name="action" id="action" value="${param['action']}" />
                 <input type="hidden" name="cid" id="cid" value="${param['mess']}" />
             </div>
-           
 </div><div class="col-sm-2"></div>
 		</c:when>
 		<c:otherwise>

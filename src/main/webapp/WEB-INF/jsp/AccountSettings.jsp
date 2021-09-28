@@ -152,7 +152,7 @@
             </div> 
             <div class="modal-footer">
             <button class="btn btn-primary" onclick="window.location.replace('listAll')" style="display:none" id="listContBtn">list Contacts</button>
-            <button class="btn btn-danger" id="daButton" onclick="deleteAccount('${sessionScope.TableName}')" style="display:none" disabled="disabled">Delete</button>
+            <button class="btn btn-danger" id="daButton" onclick="deleteAccount('${sessionScope.TableName}')" style="display:none" disabled="disabled">Delete Account</button>
             <button class="btn btn-default" id="cancelBtn" aria-label="Close" onClick="closeAccountSettingsUpdateModal()" >Close</button>
             </div>
         </div>
