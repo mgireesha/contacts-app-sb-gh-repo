@@ -45,7 +45,7 @@ public class UploadController {
 		if("dp".equalsIgnoreCase(action)) {
 			mv.setViewName("redirect:/viewContact?mess="+id);
 		}else {
-			mv.setViewName("Home");
+			mv.setViewName("ListAllContacts");
 			
 		}
 		String contentType = request.getContentType();

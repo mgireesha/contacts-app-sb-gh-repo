@@ -24,6 +24,8 @@
 <%@ include file="Header.txt" %>
 	<div class="container-fluid" style="background-image:url()">
 		<button onclick="topFunction()" class="btn btn-primary" id="myBtn" title="Go to top">Top</button>
+		<c:choose>
+			<c:when test="${not empty cList}">
 		<c:if test="${View ne 'thumbnail'}">
 			<div style="overflow-x: auto;">
 				<table class="table table-striped table-bordered table-hover table-condensed table-responsive"
@@ -35,8 +37,8 @@
 									onclick="selectAll(this);" /></td>
 							</c:if>
 							<td><i><b>Name</b></i></td>
-							<td><i><b>Email</b></i></td>
 							<td><i><b>Phone</b></i></td>
+							<td><i><b>Email</b></i></td>
 							<c:if test="${View ne 'advanced'}">
 								<td><i><b>Gender</b></i></td>
 								<td><i><b>City</b></i></td>
@@ -52,13 +54,13 @@
 									<td><input type="checkbox" value="${ct.getId()}"
 										name="checkedbox" onclick="showDeleteIcon()" /></td>
 									<td><a href="viewContact?mess=${ct.getId()}">${ct.getName()}</a></td>
-									<td>${ct.getEmail()}</td>
 									<td>${ct.getPhone()}</td>
+									<td>${ct.getEmail()}</td>
 								</c:if>
 								<c:if test="${View ne 'advanced'}">
 									<td>${ct.getName()}</td>
-									<td>${ct.getEmail()}</td>
 									<td>${ct.getPhone()}</td>
+									<td>${ct.getEmail()}</td>
 									<td>${ct.getGender()}</td>
 									<td>${ct.getCity()}</td>
 									<td>${ct.getAddress()}</td>
@@ -150,6 +152,22 @@
 				</c:forEach>
 			</div>
 		</c:if>
+		</c:when>
+		<c:otherwise>
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-5">
+						<img alt="No Data Found ..!!!" align="middle" src="static_resources/images/NoDataFound.png" />
+						<div style="margin-left: 42%;">
+							<i><b>To imort contacts : &nbsp&nbsp</b></i><a onclick="importContactsDiv()">click here &nbsp </a> <i><b>OR
+									<br/> To add new contacts &nbsp&nbsp
+							</b></i><a href="AddUpdate">click here</a>
+						</div>
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
+			</c:otherwise>
+	</c:choose>
 		<input type="hidden" id="checkedBoxes" name="checkedBoxes" />
 		<div id="snackbar" style="display: none;">Contact has been deleted..</div><%--Div for snackbar showed upon delete contacts --%>
 	</div>

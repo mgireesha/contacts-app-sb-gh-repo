@@ -117,25 +117,25 @@
                 <div class="form-group">
                     <label class="control-label col-sm-4">Full Name</label>
                     <div class="col-sm-7">
-                        <input type="text" id="fname" name="fname" class="form-control" required maxlength="30" />
+                        <input type="text" id="fname" name="fname" class="form-control mandBdr" required maxlength="30" onkeyup="checkIfFilled(this)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">Email</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="email" name="email" required />
+                        <input type="text" class="form-control mandBdr" id="email" name="email" required onkeyup="checkIfFilled(this)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">Phone</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="phone" name="phone" required />
+                        <input type="text" class="form-control" id="phone" name="phone" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">New Password</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control col-sm-12" id="crtpwd" name="crtpwd" required onkeyup="CheckPasswordStrength(this.value)" />
+                        <input type="password" class="form-control col-sm-12 mandBdr" id="crtpwd" name="crtpwd" required onkeyup="CheckPasswordStrength(this.value),checkIfFilled(this)" />
                         <progress max="100" value="0" id="pwdMeter" class="col-sm-5" style="display: none;"></progress>
                         <span id="password_strength" style="display: inline-block;padding: 0.1em;" class="col-sm-7">&nbsp;Password Strength</span>
                     </div>
@@ -143,7 +143,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-4">Confirm Password</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" id="crmpwd" name="crmpwd" required />
+                        <input type="password" class="form-control mandBdr" id="crmpwd" name="crmpwd" required onkeyup="checkIfFilled(this)" />
                     </div>
                 </div>
             </form>
@@ -154,6 +154,7 @@
                     	<button type="button" name="cancel" class="btn btn-default" style="width:49%;" onClick="closeRegModal()">Cancel</button>
                     </div>
              </div>
+             <p class="mandmsg">* Fields marked with green border are mandatory</p>
            </div>
             </div>
             <!-- <div class="modal-footer" id="modalfooter">

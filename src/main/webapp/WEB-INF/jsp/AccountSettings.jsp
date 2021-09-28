@@ -122,22 +122,37 @@
     
     
     
-<div id="accountSettingsUpdateModal" class="modal fade" data-backdrop="static" style="top: 25%;left:10%">
+<div id="accountSettingsUpdateModal" class="delACMdlDiv modal fade" data-backdrop="static" style="top: 25%;left:10%">
     <div class="modal-dialog">
-        <div class="modal-content" style="width:85%">
+        <div class="delACMdlContent modal-content">
             <div class="modal-header" style="">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" style="color:#428bca"><i><b>Account Settings</b></i></h4>
             </div>
             <div class="modal-body">
-                <h5 class="text-success" id="text-success" style="color:Green;">Your Password has been updated succesfully...</h5>
-                <h5 class="" id="view-success" style="display:none">View has been updated succesfully...</h5>
-                <h5 class="text-danger" id="delete-danger" style="display:none">You will lose all your contacts.., <br/> Are you sure to delete your account...</h5>
+                <h5 class="text-success" id="text-success" style="color:Green;">Your Password has been updated successfully...</h5>
+                <h5 class="" id="view-success" style="display:none">View has been updated successfully...</h5>
+                <h5 class="" id="delete-danger" style="display: none;">
+                	Delete account will delete all our contacts.
+                	<br><br> 
+                	Are you sure to coninue ?
+					<button class="btn btn-info btn-xs" style="width: 5em;" id="deleACConfirmBtn" onClick="deleACConfirm()">Yes</button>
+				</h5>
+				<h5 class="" id="delete-danger-confirm" style="display: none;">
+                	Please fill in your password to confirm
+					<br><br>
+					<input type="password" name="delACCmPwd" id="delACCmPwd" required="required">
+					&nbsp;&nbsp;
+					<button class="btn btn-info btn-xs" style="width: 5em;" id="deleACPwdVerifyBtn" onClick="deleACPwdVerify()">Verify</button>
+					<img src="static_resources/images/YGgI.gif" alt="Loading." id="delACLoading" style="height: 1.5em;width: 1.5em;display: none;">
+					<img src="static_resources/images/tick.png" alt="Loading." id="delACTick" style="height: 1em;width: 1em;display: none;">
+				</h5>
+				<h5 class="text-danger" id="delete-danger-wrg-pwd" style="display: none;"></h5>
                 <h5 class="text-danger" id="goodBye" style="display:none"><b><i>Good Bye......</i></b></h5>
             </div> 
             <div class="modal-footer">
             <button class="btn btn-primary" onclick="window.location.replace('listAll')" style="display:none" id="listContBtn">list Contacts</button>
-            <button class="btn btn-danger" id="daButton" onclick="deleteAccount('${sessionScope.TableName}')" style="display:none">Delete</button>
+            <button class="btn btn-danger" id="daButton" onclick="deleteAccount('${sessionScope.TableName}')" style="display:none" disabled="disabled">Delete</button>
             <button class="btn btn-default" id="cancelBtn" aria-label="Close" onClick="closeAccountSettingsUpdateModal()" >Close</button>
             </div>
         </div>

@@ -3,6 +3,7 @@ package com.capp.springboot.controllers;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -28,7 +29,7 @@ public class RemoveController {
 	}
 	
 	@RequestMapping("/deleteAC")
-	public @ResponseBody String deleteAccount(HttpServletRequest request) {
+	public @ResponseBody String deleteAccount(HttpServletRequest request, HttpServletResponse response) {
 		String status ="";
 		String tableName = (String)request.getSession().getAttribute("tableName");
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("Beans.xml");
@@ -36,8 +37,6 @@ public class RemoveController {
 		status = rem.deleteAccount(tableName);
 		if("Success".equalsIgnoreCase(status))
 			request.getSession().invalidate();
-		//ModelAndView mv = new ModelAndView();
-		//mv.setViewName("../../login");
 		((ClassPathXmlApplicationContext) ctx).close();
 		try {
 			TimeUnit.SECONDS.sleep(3);
@@ -45,6 +44,28 @@ public class RemoveController {
 			e.printStackTrace();
 		}
 	return status;
+	}
+	
+	@RequestMapping("/deleteACPwdVerify")
+	public @ResponseBody String deleteACPwdVerify(HttpServletRequest request, HttpServletResponse response) {
+		String checkPwd = "";
+		String pwd = request.getParameter("pwd");
+		System.out.println(pwd);
+		String tableName = (String)request.getSession().getAttribute("tableName");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("Beans.xml");
+		RemoveService rem = (RemoveService)ctx.getBean("removeS");
+		checkPwd = rem.verifyPwd(tableName,pwd);
+		if(!"VERIFIED".equalsIgnoreCase(checkPwd)){
+			response.setStatus(300);
+		}
+		((ClassPathXmlApplicationContext) ctx).close();
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		return checkPwd;
 	}
 	
 	@RequestMapping("/deleteSelected")

@@ -10,6 +10,8 @@ public interface RemoveService {
 	String deleteAccount(String tableName);
 
 	String deleteSelectedContacts(String tableName, String checkedContactIds);
+
+	String verifyPwd(String tableName, String pwd);
 	
 
 }

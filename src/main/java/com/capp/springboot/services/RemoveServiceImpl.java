@@ -9,6 +9,7 @@ import java.sql.Statement;
 
 import org.apache.commons.io.FileUtils;
 
+import com.capp.springboot.object.SignInParams;
 import com.capp.springboot.util.DaoException;
 import com.capp.springboot.util.DbUtil;
 
@@ -123,6 +124,36 @@ public class RemoveServiceImpl implements RemoveService{
                     }
             }
 			return status;
+	}
+
+	@Override
+	public String verifyPwd(String tableName, String pwd) {
+		Connection con = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String errorMsg = "";
+		String searchPsswd = "SELECT * FROM public.contacts_app_creds WHERE TABLENAME='"+tableName.substring("public.".length(), tableName.length())+"' AND PASSWORD='"+pwd+"'";
+		try {
+			con = DbUtil.getConnection();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(searchPsswd);
+			if(rs.next()){
+				errorMsg = "VERIFIED";
+			}else {
+				errorMsg = "Password is not correct. try again with corect password.";
+			}
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				DbUtil.closeResources(con, stmt, rs);
+			} catch (DaoException e) {
+				e.printStackTrace();
+			}
+		}
+		return errorMsg;
 	}
 
 }

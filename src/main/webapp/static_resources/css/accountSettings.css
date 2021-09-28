@@ -90,6 +90,16 @@
 	.colourPickerContent{
 		width:95% !important;
 	}
+	
+	.delACMdlDiv{
+		top: 25%;
+		left:0 !important;
+		padding-right:0 !important;
+	}
+	
+	.delACMdlContent{
+		width:100% !important;
+	}
 }
 
 .colourPickerDiv{
@@ -100,4 +110,14 @@
 
 .colourPickerContent{
 	width:70%;
+}
+
+.delACMdlDiv{
+	top: 25%;
+	left:10%;
+	padding-right:17%;
+}
+
+.delACMdlContent{
+	width:85%;
 }

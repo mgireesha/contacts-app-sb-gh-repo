@@ -94,7 +94,7 @@ public class LoginServiceImpl implements LoginService{
 			ps.setString(5, userObj.getPhone());
 			ps.setString(6, userObj.getGender());
 			ps.setInt(7, id);
-			ps.setString(8, "basic");
+			ps.setString(8, "advanced");
 			statInt = ps.executeUpdate();
 			if(statInt==1) {
 				ps = con.prepareStatement(saveToColour); 

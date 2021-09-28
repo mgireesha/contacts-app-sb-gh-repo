@@ -233,28 +233,67 @@ function updateView() {
 }
 
 function openDeleteAccountModal() {
-	document.getElementById("text-success").style.display = "none";
-	document.getElementById("delete-danger").style.display = "block";
-	document.getElementById("daButton").style.display = "inline";
+	//document.getElementById("text-success").style.display = "none";
+	//document.getElementById("delete-danger").style.display = "block";
+	//document.getElementById("daButton").style.display = "inline";
+	$("#daButton").attr("disabled","disabled");
+	$("#delACCmPwd").val("");
+	$("#text-success,#delete-danger-confirm,#delACTick,#delACLoading,#delete-danger-wrg-pwd").hide();
+	$("#delete-danger,#daButton,#deleACPwdVerifyBtn").show();
 	$('#accountSettingsUpdateModal').modal('show');
 }
 
-function deleteAccount(TableNameFromDb) {
+function deleteAccount() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && xhttp.status == 200) {
+			
 			window.location.replace("LogOut");
+		}
+		if (this.readyState == 4 && xhttp.status == 300) {
+			$("#delACLoading").hide();
 		}
 	};
 
-	xhttp.open("POST", "deleteAC?TableNameFromDb=" + TableNameFromDb + "&&deleteAC=YES", true);
+	xhttp.open("POST", "deleteAC", true);
 	xhttp.send();
 
-	document.getElementById("text-success").style.display = "none";
-	document.getElementById("delete-danger").style.display = "none";
-	document.getElementById("daButton").style.display = "none";
+	$("#text-success,#delete-danger,daButton,#delete-danger-confirm,#delete-danger-wrg-pwd").hide();
 	document.getElementById("goodBye").style.display = "inline";
 
+}
+
+function deleACPwdVerify() {
+	$("#delACLoading").show();
+	$("#deleACPwdVerifyBtn,#delete-danger-wrg-pwd").hide();
+	$("#delACCmPwd").css("border-color","");
+	var pwd = $("#delACCmPwd").val();
+	if (!pwd == "") {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && xhttp.status == 200) {
+				$("#delACLoading").hide();
+				$("#delACTick").show();
+				$("#daButton").removeAttr("disabled");
+			}
+			if (this.readyState == 4 && xhttp.status == 300) {
+				$("#delACLoading").hide();
+				$("#delete-danger-wrg-pwd").html(xhttp.responseText);
+				$("#delete-danger-wrg-pwd,#deleACPwdVerifyBtn").show();
+				$("#delACCmPwd").css("border-color","red");
+				$("#delACCmPwd").focus();
+			}
+		};
+
+		xhttp.open("GET", "deleteACPwdVerify?pwd=" + pwd, true);
+		xhttp.send();
+	} else {
+		$("#delACLoading").hide();
+		$("#deleACPwdVerifyBtn").show();
+		//$("#delete-danger-wrg-pwd").html("Tis is required fied");
+		$("#delACCmPwd").css("border-color","red");
+		$("#delACCmPwd").focus();
+	}
 }
 
 $(document).ready(function() {
@@ -267,6 +306,7 @@ $(document).ready(function() {
 function closeAccountSettingsUpdateModal(){
 	$('#delete-danger,#goodBye,#text-success,#view-success,#listContBtn,#daButton').hide();
 	$('#accountSettingsUpdateModal').modal('hide');
+	$("#delACCmPwd").val("");
 }
 
 /*-- js code for accountSettings.jsp -->>> End --*/
@@ -462,4 +502,9 @@ function CheckPasswordStrength(password) {
 	password_strength.innerHTML = passwordStrength;
 	password_strength.style.color = color;
 	$("#pwdMeter").val(pwdMeterV);
+}
+
+function deleACConfirm(){
+	$('#delete-danger').hide();
+	$('#delete-danger-confirm').show();
 }

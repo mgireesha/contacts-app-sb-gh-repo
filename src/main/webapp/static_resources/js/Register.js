@@ -15,9 +15,9 @@ function validate() {
 		if (passwordStrength()) {
 			if (matchPwd()) {
 				if (validateemail()) {
-					if (phonenumber()) {
+					//if (phonenumber()) {
 						RegisterUser();
-					}
+					//}
 				}
 			}
 		}
@@ -176,4 +176,14 @@ function CheckPasswordStrength(password) {
 	password_strength.innerHTML = passwordStrength;
 	password_strength.style.color = color;
 	$("#pwdMeter").val(pwdMeterV);
+}
+
+function checkIfFilled(elem){
+	if(elem.value!="" && elem.value!=undefined){
+		$(elem).removeClass('mandBdr');
+	}else{
+		if(!$(elem).hasClass('mandBdr')){
+			$(elem).addClass('mandBdr');
+		}
+	}
 }
