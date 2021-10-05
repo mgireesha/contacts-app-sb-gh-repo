@@ -157,7 +157,7 @@ public class CAppFileUtilImpl implements cAppFileUtil {
 	}
 
 	public void writeXlsFile(final HttpServletResponse response, String tableName, ApplicationContext ctx) throws IOException {
-		FileInputStream fileIS = new FileInputStream("src/main/webapp/static_resources/images/Template/Template.xls");
+		FileInputStream fileIS = new FileInputStream("Template.xls");
 		HSSFWorkbook hfWb = new HSSFWorkbook(fileIS);
 		HSSFSheet sheet = hfWb.getSheetAt(0);
 		List<Contact> cList = null;
@@ -361,14 +361,14 @@ public class CAppFileUtilImpl implements cAppFileUtil {
 	                        String temp="";
 	                        for(String numb : removeArray){
 	                            if(!"".equals(temp)){
-	                                System.out.println(temp);
+	                                //System.out.println(temp);
 	                                temp=temp+numb;
 	                            }else{
 	                                temp=numb;
-	                                System.out.println(temp);
+	                                //System.out.println(temp);
 	                            }
 	                        }
-	                        System.out.println(contactVal);
+	                        //System.out.println(contactVal);
 	                        //contactVal="+91-"+temp;
 	                    }
 	                    contact.setPhone(contactVal);

@@ -107,7 +107,7 @@ public class RemoveServiceImpl implements RemoveService{
                         sb.append(" OR ID=");
                 }
                         sql=sb.toString();  
-                        System.out.println(sql);
+                        //System.out.println(sql);
                         ps=conn.prepareStatement(sql);
                         stInt =  ps.executeUpdate();
                         if(stInt == 1)
