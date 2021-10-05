@@ -157,7 +157,7 @@ public class CAppFileUtilImpl implements cAppFileUtil {
 	}
 
 	public void writeXlsFile(final HttpServletResponse response, String tableName, ApplicationContext ctx) throws IOException {
-		FileInputStream fileIS = new FileInputStream("Template.xls");
+		FileInputStream fileIS = new FileInputStream("static_resources/Template/Template.xls");
 		HSSFWorkbook hfWb = new HSSFWorkbook(fileIS);
 		HSSFSheet sheet = hfWb.getSheetAt(0);
 		List<Contact> cList = null;
