@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.LinkOption;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -32,7 +31,7 @@ import com.capp.springboot.util.cAppFileUtil;
 @Controller
 public class UploadController {
 	
-	//@Value("${upload.filepath}")
+	@Value("${upload.filepath}")
 	private String filePath;
 	
 	@RequestMapping(method=RequestMethod.POST , value = "/upload")
