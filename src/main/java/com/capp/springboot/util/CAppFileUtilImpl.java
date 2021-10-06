@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.net.URI;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,6 +32,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -157,7 +162,13 @@ public class CAppFileUtilImpl implements cAppFileUtil {
 	}
 
 	public void writeXlsFile(final HttpServletResponse response, String tableName, ApplicationContext ctx) throws IOException {
-		FileInputStream fileIS = new FileInputStream("static_resources/Template/Template.xls");
+		
+		File file = new File("Template.xls");
+		FileUtils.copyURLToFile(new URL("https://contacts-app-sb.herokuapp.com/static_resources/Template/Template.xls"), file);
+		
+		
+		//FileInputStream fileIS = new FileInputStream("static_resources/Template/Template.xls");
+		FileInputStream fileIS = new FileInputStream(file);
 		HSSFWorkbook hfWb = new HSSFWorkbook(fileIS);
 		HSSFSheet sheet = hfWb.getSheetAt(0);
 		List<Contact> cList = null;

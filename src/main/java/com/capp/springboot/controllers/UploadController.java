@@ -32,7 +32,7 @@ import com.capp.springboot.util.cAppFileUtil;
 @Controller
 public class UploadController {
 	
-	@Value("${upload.filepath}")
+	//@Value("${upload.filepath}")
 	private String filePath;
 	
 	@RequestMapping(method=RequestMethod.POST , value = "/upload")
