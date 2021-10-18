@@ -21,7 +21,8 @@ public class UpdateServiceImpl implements UpdateService {
 		int updateSt = 0;
 		String status = "WRONG_PASSWORD";
 		String checkCuPwd = "";
-		tableName = tableName.substring("public.".length(), tableName.length());
+		if(null!=tableName)
+			tableName = tableName.substring("public.".length(), tableName.length());
 		if("yes".equalsIgnoreCase(isFromForgoPwdMail))
 			checkCuPwd = "SELECT * FROM public.CONTACTS_APP_CREDS WHERE USERNAME='"+registeredEmail+"' AND OTP='"+currentPwd+"';";
 		else

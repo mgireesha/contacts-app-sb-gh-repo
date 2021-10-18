@@ -56,8 +56,9 @@
         <div class="col-sm-6">
             <input type="password" class="form-control" id="copwd" name="copwd" style="" />
         </div>
-        <div class="col-sm-3"><p id="matchpwd" style="color:red;margin-left:0.0em;display:none">Password doesn't match</p>
-                              <p id="text-alertNull" style="color:red;margin-left:0.0em;display:none">Field cannot be empty</p>
+        <div class="col-sm-3">
+        	<p id="matchpwd" style="color:red;margin-left:0.0em;display:none">Password doesn't match</p>
+            <p id="text-alertNull" style="color:red;margin-left:0.0em;display:none">Field cannot be empty</p>
         </div>
     </div>
     <div class="form-group themetext" style="margin-top:0.1em;">

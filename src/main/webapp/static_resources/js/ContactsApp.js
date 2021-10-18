@@ -343,34 +343,51 @@ function openChangeColour() {
 }
 
 function ResetPassword() {
-	document.getElementById("matchpwd").style.display = "none";
-	document.getElementById("invalidpwd").style.display = "none";
+	$("#matchpwd,#invalidpwd,#emptypwd,#emptyNewPwd").hide();
+	$('#newpwd,#otp,#conpwd').css('border-color', '');
 	var otp = document.getElementById("otp").value;
 	var newpwd = document.getElementById("newpwd").value;
 	var conpwd = document.getElementById("conpwd").value;
 	var userName = $("#userName").val();
-
+	
+	if (otp == "") {
+		$('#otp').css('border-color', 'red');
+		document.getElementById("emptypwd").style.display = "block";
+		$('#otp').focus();
+		return;
+	}
+	
 	if (newpwd == conpwd) {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (xhttp.status == 300) {
-				document.getElementById("invalidpwd").style.display = "block";
-				$('#cupwd').css('border-color', 'red');
-				$('#cupwd').focus();
-			}
-			if (xhttp.status == 200) {
-				$("#text-success").show();
-				$("#signIn").show();
-				$('#accountSettingsUpdateModal').modal('show');
-			}
-		};
-		xhttp.open("POST", "updatepwd?cupwd=" + otp + "&&copwd=" + conpwd + "&&registeredEmail=" + userName + "&&isFromForgoPwdMail=yes", true);
-		xhttp.send();
-
+		if (newpwd == "") {
+			$('#newpwd').css('border-color', 'red');
+			document.getElementById("emptyNewPwd").style.display = "block";
+			$('#newpwd').focus();
+			return;
+		}
+		if (passwordStrength()) {
+			$('#cPwdLoading').show();
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.status == 300) {
+					document.getElementById("invalidpwd").style.display = "block";
+					$('#cupwd').css('border-color', 'red');
+					$('#cupwd').focus();
+					$('#cPwdLoading').hide();
+				}
+				if (xhttp.status == 200) {
+					$("#text-success").show();
+					$("#signIn").show();
+					$('#accountSettingsUpdateModal').modal('show');
+					$('#cPwdLoading').hide();
+				}
+			};
+			xhttp.open("POST", "updatepwd?cupwd=" + otp + "&&copwd=" + conpwd + "&&registeredEmail=" + userName + "&&isFromForgoPwdMail=yes", true);
+			xhttp.send();
+		}
 	} else {
 		document.getElementById("matchpwd").style.display = "block";
-		$('#copwd').css('border-color', 'red');
-		$('#copwd').focus();
+		$('#conpwd').css('border-color', 'red');
+		$('#conpwd').focus();
 	}
 }
 function ASCancelfn() {
@@ -507,4 +524,16 @@ function CheckPasswordStrength(password) {
 function deleACConfirm(){
 	$('#delete-danger').hide();
 	$('#delete-danger-confirm').show();
+}
+
+function viewHidePwd() {
+	var x = document.getElementById("newpwd");
+	var y = document.getElementById("conpwd");
+	if (x.type == "password") {
+		x.type = "text";
+		y.type = "text";
+	} else {
+		x.type = "password";
+		y.type = "password";
+	}
 }

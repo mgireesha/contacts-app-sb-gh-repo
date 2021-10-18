@@ -25,17 +25,27 @@
             <p class="text-success"><strong>Reset Password:</strong></p>
         </div>
     <div class="form-group" style="margin-top:3em;">
-            <label class="control-label col-sm-3">One Time Password</label>
+        <label class="control-label col-sm-3">One Time Password</label>
         <div class="col-sm-6" >
-             <input type="password" id="otp" name="otp" class="form-control" style="" autofocus="autofocus" />  
+             <input type="password" id="otp" name="otp" class="form-control" autofocus="autofocus" />  
         </div>
+        <div class="col-sm-3" style="display: none;" id="cPwdLoading">
+			<img src="static_resources/images/YGgI.gif" alt="Loading." style="height: 2.2em;width: 2.2em;">
+		</div>
         <div class="col-sm-3"><p id="invalidpwd" style="color:red;margin-left:1em;margin-top:0.3em;display:none">Invalid OTP</p></div>
         <div class="col-sm-3"><p id="emptypwd" style="color:red;margin-left:1em;margin-top:0.3em;display:none">Field cannot be empty</p></div>
     </div>
     <div class="form-group" style="margin-top:2em;">
             <label class="control-label col-sm-3">New Password</label>
         <div class="col-sm-6">
-            <input type="password" class="form-control" id="newpwd" name="newpwd" style="" />
+            <input type="password" class="form-control" id="newpwd" name="newpwd" onkeyup="CheckPasswordStrength(this.value)" />
+            <progress max="100" value="0" id="pwdMeter" class="col-sm-5" style="display: none;"></progress>
+            <b><span id="password_strength" style="display: inline-block;padding: 0.1em;" class="col-sm-7">Password Strength</span></b>
+        </div>
+        <div class="col-sm-3">
+        	<p id="emptyNewPwd" style="color:red;margin-left:1em;margin-top:0.3em;display:none">
+        		Field cannot be empty
+        	</p>
         </div>
     </div>
     <div class="form-group" style="margin-top:2em;">
@@ -49,7 +59,7 @@
         <div class="col-sm-3">
         </div>
         <div class="col-sm-7">
-            <input type="checkbox" onclick="myFunction('r')" />Show Password
+            <input type="checkbox" onclick="viewHidePwd()" />&nbsp;Show Password
         </div>
     </div>
     <div class="form-group" style="margin-top:2em;">
@@ -67,7 +77,7 @@
 	<div id="accountSettingsUpdateModal" class="modal fade" data-backdrop="static" style="top: 25%;left:10%">
     <div class="modal-dialog">
         <div class="modal-content" style="width:85%">
-            <div class="modal-header" style="background-color:#333333">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" style="color:#428bca"><i><b>Account Settings</b></i></h4>
             </div>
@@ -80,7 +90,7 @@
             <button class="btn btn-primary" id="listContacts" onclick="window.location.replace('listAllContacts.jsp')" style="display:none">List Contacts</button>
             <button class="btn btn-primary" id="signIn" onclick="window.location.replace('https://contacts-app-sb.herokuapp.com/')" style="display:none">Goto LogIn</button>
             <button class="btn btn-danger" id="delete" onclick="deleteAccount()" style="display:none">Delete</button>
-            <button class="btn btn-default"  id="ASCancel" onclick="ASCancelfn()">Cancel</button>            
+            <button class="btn btn-default"  id="ASCancel" onclick="ASCancelfn()">Close</button>            
             </div>
         </div>
     </div>

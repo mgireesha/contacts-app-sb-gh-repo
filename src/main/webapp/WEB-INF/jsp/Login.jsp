@@ -49,7 +49,7 @@
       <div class="row">
       		<div class="col-sm-3" style="padding: 0.5em"><span class="show-reset">Forgot password ? <a href="#">Click here to reset</a></span></div>
       		<div class="col-sm-3" style="padding: 0.5em"><span onclick="showRegModal()" >New User ? <a href="#">Register here</a></span></div>
-      		<div class="col-sm-2" style="padding: 0.5em"><span class="" title="In Progress, Coming Soon.."><a href="#">About APP</a></span></div>
+      		<div class="col-sm-2" style="padding: 0.5em"><span onclick="showAoutApp()" class="" title="In Progress, Coming Soon.."><a href="#">About APP</a></span></div>
       		<div class="col-sm-4" style="padding: 0.5em"><span onclick="" ><a href="#" style="text-decoration: none;">Write to us @ Contactsapppwdreset@gmail.com</a></span></div>
       </div>
     </div>
@@ -165,7 +165,48 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
+
+	<div id="AboutAppModal" class="modal fade" data-backdrop="static" style="padding-top: 50px;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" style="">About App</h4>
+				</div>
+				<div class="modal-body respons" id="respons">
+					<ul>
+						<li>A web application to backup phone contacts.</li>
+						<li>Technologies used.
+							<ul>
+								<li>Front End: JSP, javaScript, jQuery</li>
+								<li>Back End: Java, Java Spring, Springboot 2.5.4</li>
+								<li>Database: Postgres</li>
+							</ul>
+						</li>
+						<li>These are the features
+							<ul>
+								<li>Create and update a contact</li>
+								<li>Import multiple contacts at once - VCF, XLS and CSV are supprted.</li>
+								<li>Export multiple contacts at once as VCF, XLS or CSV files</li>
+								<li>Users can customize header and footer colour of their choice</li>
+								<li>Viewtype can be changed</li>
+							</ul>
+						</li>
+						<li>Contact Us
+    						<ul>
+        						<li>Write to us @ Contactsapppwdreset@gmail.com</li>
+        					</ul>
+        				</li>
+					</ul>
+				</div>
+				<div class="modal-footer" id="modalfooter">
+					<button class="btn btn-default" data-dismiss="modal" id="cancel" aria-label="Close">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
 $("#saveBtn").on("click", function() {
 	  if (!$("#register")[0].checkValidity()) {
 	    // If the form is invalid, submit it. The form won't actually submit;
