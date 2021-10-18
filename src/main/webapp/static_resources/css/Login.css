@@ -141,3 +141,11 @@ span.psw {
 	margin-top:0em !important;
 }
 }
+
+.AboutAppModal{
+	padding-top: 50px;
+}
+.about-list{
+	background-color: #ebf0f7;
+	padding: 1em;
+}
