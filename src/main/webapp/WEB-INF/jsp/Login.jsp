@@ -180,7 +180,7 @@
 								<li>A web application to backup phone contacts.</li>
 								<li>Technologies used.
 									<ul>
-										<li>Front End: JSP, javaScript, jQuery</li>
+										<li>Front End: JSP, javaScript, jQuery, CSS</li>
 										<li>Back End: Java, Java Spring, Springboot 2.5.4</li>
 										<li>Database: Postgres</li>
 									</ul>
