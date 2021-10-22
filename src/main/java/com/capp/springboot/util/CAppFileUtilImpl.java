@@ -44,6 +44,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import com.capp.springboot.object.Contact;
 import com.capp.springboot.services.ListContactService;
@@ -166,8 +167,9 @@ public class CAppFileUtilImpl implements cAppFileUtil {
 		//File file = new File("Template.xls");
 		//FileUtils.copyURLToFile(new URL("https://contacts-app-sb.herokuapp.com/static_resources/Template/Template.xls"), file);
 		
+		ClassPathResource resoure = new ClassPathResource("Template.xls");
 		
-		FileInputStream fileIS = new FileInputStream("Template.xls");
+		FileInputStream fileIS = new FileInputStream(resoure.getFile());
 		//FileInputStream fileIS = new FileInputStream(file);
 		HSSFWorkbook hfWb = new HSSFWorkbook(fileIS);
 		HSSFSheet sheet = hfWb.getSheetAt(0);
