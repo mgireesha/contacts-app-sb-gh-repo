@@ -168,7 +168,13 @@ public class CAppFileUtilImpl implements cAppFileUtil {
 		//FileUtils.copyURLToFile(new URL("https://contacts-app-sb.herokuapp.com/static_resources/Template/Template.xls"), file);
 		
 		ClassPathResource resoure = new ClassPathResource("Template.xls");
-		
+		InputStream inStr = resoure.getInputStream();
+		File file = new File("Template.xls");
+		try {
+			FileUtils.copyInputStreamToFile(inStr, file);
+		} finally {
+		    IOUtils.closeQuietly(inStr);
+		}
 		FileInputStream fileIS = new FileInputStream(resoure.getFile());
 		//FileInputStream fileIS = new FileInputStream(file);
 		HSSFWorkbook hfWb = new HSSFWorkbook(fileIS);
