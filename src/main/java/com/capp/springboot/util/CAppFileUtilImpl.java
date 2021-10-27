@@ -176,7 +176,6 @@ public class CAppFileUtilImpl implements cAppFileUtil {
 		    IOUtils.closeQuietly(inStr);
 		}
 		FileInputStream fileIS = new FileInputStream(file);
-		//FileInputStream fileIS = new FileInputStream(file);
 		HSSFWorkbook hfWb = new HSSFWorkbook(fileIS);
 		HSSFSheet sheet = hfWb.getSheetAt(0);
 		List<Contact> cList = null;

@@ -18,6 +18,11 @@
 </head>
 <body class="themeContent">
 <%@ include file="Header.txt" %>
+<%
+	if(!request.getHeader("referer").contains("AddUpdate")){
+		request.getSession().setAttribute("goBackURL", request.getHeader("referer"));
+	}
+%>
 <div class="container" style="">
 	<c:choose>
 		<c:when test="${empty nothing}">
@@ -108,7 +113,7 @@
             
             <div class=" col-sm-3"></div>
             <div class="col-sm-7" style="">
-                <button type="button" name="cancel" class="btn btn-default" style="width:41.5%" onclick="window.location.replace('<%=request.getHeader("Referer")%>')">Go back</button>
+                <button type="button" name="cancel" class="btn btn-default" style="width:41.5%" onclick="window.location.replace('<%=request.getSession().getAttribute("goBackURL")%>')">Go back</button>
                 <button type="button" name="save" class="btn btn-success" style="width:41.5%" onclick="validate();">Save</button>
                 <img src="static_resources/images/YGgI.gif" alt="Loading." id="saveCLoading" style="display: none;">
                 <img src="static_resources/images/tick.png" alt="Loading." id="saveCTick" style="display: none;">
