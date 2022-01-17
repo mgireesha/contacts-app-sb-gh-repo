@@ -537,3 +537,4 @@ function viewHidePwd() {
 		y.type = "password";
 	}
 }
+

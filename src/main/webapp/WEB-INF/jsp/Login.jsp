@@ -55,7 +55,6 @@
     </div>
   </form>
 </div>
-
 <%@ include file="/WEB-INF/jsp/Footer.txt" %>
 <div id="testmodal2" class="modal fade " data-backdrop="static" style="padding-top:120px">
     <div class="modal-dialog">
@@ -222,5 +221,6 @@ $("#saveBtn").on("click", function() {
 	  }
 	});
 </script>
+
 </body>
 </html>

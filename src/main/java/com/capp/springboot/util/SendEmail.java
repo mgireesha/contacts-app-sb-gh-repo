@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.sql.Statement;
-
+import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Properties;
@@ -32,8 +32,24 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
+@Service
 public class SendEmail {
-    Connection con=null;
+
+	Connection con=null;
     Statement stmt=null;
     ResultSet rs=null;
     PreparedStatement ps=null;
@@ -94,43 +110,11 @@ public class SendEmail {
                     e.printStackTrace();
                 }
             }
-        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-        // Get a Properties object
-        Properties props = System.getProperties();
-        props.setProperty("mail.smtp.host", "smtp.gmail.com");
-        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");
-        props.setProperty("mail.smtp.port", "465");
-        props.setProperty("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.debug", "true");
-        props.put("mail.store.protocol", "pop3");
-        props.put("mail.transport.protocol", "smtp");
-        final String username = "contactsapppwdreset@gmail.com";//
-        final String password = "contactsapp@2021";
-        //final String username = "hactress6@gmail.com";//
-        //final String password = "hotpornstar";
         try{
-                Session session = Session.getInstance(props,new Authenticator(){
-                                            protected PasswordAuthentication getPasswordAuthentication() {
-                                            return new PasswordAuthentication(username, password);
-                                                                            }
-                                            });
-        // -- Create a new message --
-        Message msg = new MimeMessage(session);
-
-        // -- Set the FROM and TO fields --
-        msg.setFrom(new InternetAddress("contactsapppwdreset@gmail.com"));
-        msg.setRecipients(Message.RecipientType.TO, 
-                        InternetAddress.parse(registeredEmail,false));
-        msg.setSubject("Contacts App Password Reset");
-        //msg.setText("Hi "+NameOfUser+" \n\nYour Password has been reset, Please use below password to login\nNew Password : "+NewPwd);
-            
         String encodedregisteredEmail = Base64.getEncoder().encodeToString(registeredEmail.getBytes());
         String doubleEncodedregisteredEmail = Base64.getEncoder().encodeToString(encodedregisteredEmail.getBytes());
         String tripleEncodedregisteredEmail = Base64.getEncoder().encodeToString(doubleEncodedregisteredEmail.getBytes());
         String quadrupleEncodedregisteredEmail = Base64.getEncoder().encodeToString(tripleEncodedregisteredEmail.getBytes());
-            
         final String BODY = String.join(
                         System.getProperty("line.separator"),
                         "<h3>Hi <i style='color:#7f10a2'>"+NameOfUser+"</i></h3>",
@@ -148,11 +132,31 @@ public class SendEmail {
                         "    margin: 4px 2px;'><i>click here</i></button></a> to reset your password.</h4>",
                         "<h4>Use OTP :"+NewPwd+"</h4>"
                     );
-            msg.setContent(BODY,"text/html");
-        msg.setSentDate(new Date());
-        Transport.send(msg);
-        System.out.println("Message sent.");
-        }catch (MessagingException e){ 
+        String esToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY0MzMzMjczNSwiaWF0IjoxNjQyNDQzNzAyfQ.VxXnTU5fLbCN1dI5jw42TN_v43_J8JVJI0kaOVCc78E";
+        System.out.println("esToken: "+esToken);
+        JSONObject responseObj = null;
+        RestTemplate restTemplate = new RestTemplateBuilder()
+				.setConnectTimeout(Duration.ofMillis(60000))
+				.setReadTimeout(Duration.ofMillis(60000))
+				.build();
+        JSONObject reqJson = new JSONObject();
+		reqJson.put("toAddress", registeredEmail);
+		reqJson.put("messageBody", BODY);
+		reqJson.put("messageSubject", "Contacts App Password Reset");
+		reqJson.put("requestingApplication", "TODO");
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setBearerAuth(esToken);
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString("https://send-email-sb.herokuapp.com/sendEmail");
+		UriComponents uriComponents = builder.build();
+		HttpEntity<String> request = new HttpEntity<String>(reqJson.toString(),headers);
+		ResponseEntity<String> response = restTemplate.exchange(uriComponents.toString(), HttpMethod.POST,request,String.class);
+		responseObj = new JSONObject(response.getBody().toString());
+		System.out.println(responseObj.toString());
+		if(responseObj.getString("sendStatus").equals("MESSAGE_SENT"))
+			isRsNext = true;
+        
+        }catch (Exception e){ 
             System.err.println("error sending email, cause: " + e);
         }
   
